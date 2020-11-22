@@ -1,13 +1,13 @@
-export const light = {
-  body: "#FFF",
-  text: "#363537",
-  toggleBorder: "#FFF",
-  background: "#363537",
+export const dark = {
+  bgColor: "#2e3440",
+  textColor: "#d8dee9",
+  interfaceColor: "#3b4252",
+  interactiveColor: "#4c566a",
 }
 
-export const dark = {
-  body: "#363537",
-  text: "#FAFAFA",
-  toggleBorder: "#6B8096",
-  background: "#999",
+export const light = {
+  bgColor: "#eceff4",
+  textColor: "#4c566a",
+  interfaceColor: "#d8dee9",
+  interactiveColor: "#c5ced9",
 }
