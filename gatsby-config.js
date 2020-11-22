@@ -1,6 +1,6 @@
 const siteMetadata = {
   // Update the following values to what you please
-  title: `Simple Blog`,
+  title: `Kalyan TM`,
   description: `Kick off your next, great Gatsby project with this simple starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
   author: `Simple`,
   // Add your socials here

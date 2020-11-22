@@ -1,6 +1,6 @@
 import React from "react"
 import Layout from "../components/layout/layout"
-import SEO from "../components/SEO/seo"
+import SEO from "../components/seo/seo"
 
 import { MainBlogTitle, PrePost } from "../styled-components/index"
 import { Disqus } from "gatsby-plugin-disqus"

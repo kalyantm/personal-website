@@ -6,8 +6,16 @@ import Header from "../header/header"
 import Footer from "../footer/footer"
 
 import "./layout.scss"
+import styled from "styled-components"
+import { createGlobalStyle } from "styled-components"
 
-const Layout = ({ children, headless }) => {
+const GlobalStyle = createGlobalStyle`
+  body {
+    background: ${props => props.theme.body};
+  }
+`
+
+const Layout = ({ children, headless, toggleTheme }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -21,9 +29,13 @@ const Layout = ({ children, headless }) => {
 
   return (
     <>
-      {
-        headless ? null : <Header siteTitle={data.site.siteMetadata.title} />
-      }
+      <GlobalStyle />
+      {headless ? null : (
+        <Header
+          toggleTheme={toggleTheme}
+          siteTitle={data.site.siteMetadata.title}
+        />
+      )}
       <div
         style={{
           margin: `0 auto`,
@@ -32,9 +44,7 @@ const Layout = ({ children, headless }) => {
         }}
       >
         <section>
-          <article>
-            {children}
-          </article>
+          <article>{children}</article>
         </section>
         <Footer title={data.site.siteMetadata.author} />
       </div>
