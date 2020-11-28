@@ -1,7 +1,7 @@
 const siteMetadata = {
   // Update the following values to what you please
-  title: `Kalyan TM`,
-  description: `Kick off your next, great Gatsby project with this simple starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+  title: `KTM`,
+  description: `Hi, I'm Kalyan, a product engineer focused on building usable, reliable and accessible software.`,
   author: `Simple`,
   // Add your socials here
   bio: `It is a long established fact that a reader will be distracted by the
@@ -12,11 +12,11 @@ const siteMetadata = {
   socials: [
     {
       name: "Github",
-      url: "https://github.com/thecodemint/gatsby-starter-simple",
+      url: "https://www.github.com/kalyantm",
     },
     {
       name: "Linkedin",
-      url: "#",
+      url: "https://www.linkedin.com/in/kalyantm",
     },
   ],
 }

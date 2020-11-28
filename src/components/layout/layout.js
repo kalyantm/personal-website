@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     background: ${props => props.theme.bgColor};
     color: ${props => props.theme.textColor};
-    max-width: 700px;
+    max-width: 800px;
     margin: 0 auto;
     font-size: 16px;
   }
@@ -52,6 +52,7 @@ const Layout = ({ children, headless }) => {
         siteMetadata {
           title
           author
+          description
         }
       }
     }
@@ -75,13 +76,13 @@ const Layout = ({ children, headless }) => {
           theme={darkMode ? "dark" : "light"}
           toggleTheme={toggleTheme}
           siteTitle={data.site.siteMetadata.title}
+          description={data.site.siteMetadata.description}
         />
       )}
       <div
         style={{
           margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
+          maxWidth: 800,
         }}
       >
         <section>
