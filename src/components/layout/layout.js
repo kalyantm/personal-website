@@ -60,7 +60,7 @@ const Layout = ({ children, headless }) => {
 
   let preferDarkMode
 
-  if (window) {
+  if (typeof window !== undefined) {
     preferDarkMode = window.localStorage.getItem("prefer-dark-mode")
   }
 
