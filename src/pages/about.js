@@ -12,30 +12,35 @@ const About = () => {
     query {
       site {
         siteMetadata {
-          bio
-          socials {
-            name
-            url
+          bio {
+            intro
+            product
+            current
           }
         }
       }
     }
   `)
-  const { siteMetadata: { bio, socials }  } = data.site;
-  
+  const {
+    siteMetadata: { bio },
+  } = data.site
+
+  const socials = []
   return (
     <Layout>
       <SEO title="About" description="About Me" />
-      <p>{bio}</p>
+      <p>{bio.intro}</p>
+      <p>{bio.product}</p>
+      <p>{bio.current}</p>
       <SocialLinks>
         {socials.map(social => {
-          if (socials.length === 1) return <a href={social.url}>{social.name}</a>
+          if (socials.length === 1)
+            return <a href={social.url}>{social.icon}</a>
           return (
             <div key={social.url}>
-              <a href={social.url}>{social.name}</a>
-              {
-                socials.lastIndexOf(social) === socials.length - 1 ? null : <Divider />
-              }
+              {socials.lastIndexOf(social) === socials.length - 1 ? null : (
+                <Divider />
+              )}
             </div>
           )
         })}

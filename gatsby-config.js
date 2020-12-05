@@ -1,24 +1,18 @@
 const siteMetadata = {
   // Update the following values to what you please
   title: `KTM`,
-  description: `Hi, I'm Kalyan, a product engineer focused on building usable, reliable and accessible software.`,
+  description: `Product-Minded Software Engineer. Coffee Enthusiast. In an ideal world, a Pokemon Master.`,
   author: `Simple`,
   // Add your socials here
-  bio: `It is a long established fact that a reader will be distracted by the
-  readable content of a page when looking at its layout. The point of
-  using Lorem Ipsum is that it has a more-or-less normal distribution of
-  letters, as opposed to using 'Content here, content here', making it
-  look like readable English`,
-  socials: [
-    {
-      name: "Github",
-      url: "https://www.github.com/kalyantm",
-    },
-    {
-      name: "Linkedin",
-      url: "https://www.linkedin.com/in/kalyantm",
-    },
-  ],
+  bio: {
+    intro: `Hi 👋, I'm Kalyan, a software engineer, who spends my time building web
+              applications. I also blog about the web and product engineering
+              and try my best to create fun, open-source software.`,
+    product: `I also have a keen interest in product and love to involve myself in
+          breaking down complex, challenging technical roadmaps into reliable,
+          usable software.`,
+    current: `Currently building the frontend at Saltside Technologies.`,
+  },
 }
 
 const plugins = [
