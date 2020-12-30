@@ -58,19 +58,8 @@ const Layout = ({ children, headless }) => {
     }
   `)
 
-  let preferDarkMode
-
-  if (typeof window !== undefined) {
-    preferDarkMode = window.localStorage.getItem("prefer-dark-mode")
-  }
-
-  const [darkMode, setDarkMode] = React.useState(
-    preferDarkMode === "true" ? true : false
-  )
-
   const toggleTheme = () => {
     setDarkMode(!darkMode)
-    window.localStorage.setItem("prefer-dark-mode", !darkMode)
   }
 
   return (
