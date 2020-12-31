@@ -58,7 +58,7 @@ const Layout = ({ children, headless }) => {
     }
   `)
 
-  const darkMode = React.useState(false)
+  const [darkMode, setDarkMode] = React.useState(false)
 
   const toggleTheme = () => {
     setDarkMode(!darkMode)
