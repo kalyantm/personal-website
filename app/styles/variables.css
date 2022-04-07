@@ -1,0 +1,47 @@
+:root[data-theme="light"] {
+  --color-sky-stop: #c6e0ee;
+  --color-sky-stop-2: #c6e4ee;
+  --color-sky-stop-3: #fed1ae;
+  --color-sky-stop-4: #faa0b9;
+  --color-sky-stop-5: #fbfbfb;
+  --color-surface: #c3cf9f;
+  --color-unlit-flame: #1b1b1b;
+  --color-celestial-stop: #fee717;
+  --color-celestial-stop-2: #ffb26d;
+  --color-celestial-stop-3: #ffa351;
+  --color-celestial-stop-4: #ff993d;
+  --color-celestial-stop-5: #ff7c02;
+  --color-celestial-stop-6: #e94600;
+  --color-hill-stop: #a5a5a5;
+  --color-hill-stop-2: #c4c4c4;
+  --color-hill-stop-3: #bbbbbb;
+  --color-hill-stop-4: #d2d2d2;
+  --color-hill-stop-5: #dddddd;
+  --color-hill-stop-6: #fbfbfb;
+  --color-text: #0e141b;
+}
+
+:root[data-theme="dark"] {
+  --color-sky-stop: #171233;
+  --color-sky-stop-2: #221a53;
+  --color-sky-stop-3: #3e007b;
+  --color-sky-stop-4: #500897;
+  --color-sky-stop-5: #0e141b;
+  --color-surface: #43560e;
+  --color-flame-1: #f48b00;
+  --color-flame-2: #ffb423;
+  --color-flame-3: #fccf1a;
+  --color-celestial-stop: #fff;
+  --color-celestial-stop-2: #fff;
+  --color-celestial-stop-3: #fff;
+  --color-celestial-stop-4: #8cc1f2;
+  --color-celestial-stop-5: #8cc1f2;
+  --color-celestial-stop-6: #54adff;
+  --color-hill-stop: #dddddd;
+  --color-hill-stop-2: #a4a4a4;
+  --color-hill-stop-3: #8d8a8a;
+  --color-hill-stop-4: #424141;
+  --color-hill-stop-5: #333333;
+  --color-hill-stop-6: #0e141b;
+  --color-text: #fbfbfb;
+}
