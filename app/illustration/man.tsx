@@ -8,6 +8,7 @@ export default function Man() {
       xmlns="http://www.w3.org/2000/svg"
       y="380"
       x="78%"
+      className="opacity-0 md:opacity-100"
     >
       <path
         d="M17.9336 100.48C19.2572 104.113 20.9686 105.165 23.7868 105.409L50.7937 106.128L51.8206 104.485C38.1815 103.833 30.8004 103.123 17.9336 100.48Z"

@@ -8,6 +8,7 @@ export default function CampFire() {
       xmlns="http://www.w3.org/2000/svg"
       y="462"
       x="82%"
+      className="opacity-0 md:opacity-100"
     >
       <g filter="url(#filter0_d_334_616)">
         <path

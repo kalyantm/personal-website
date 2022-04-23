@@ -1,4 +1,10 @@
-
 body {
-	background:  var(--color-hill-stop-6);
+  background: var(--color-hill-stop-6);
+}
+
+h2 {
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }

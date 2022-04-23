@@ -1,33 +1,19 @@
-import { Link } from "remix";
-import Spacer from "~/components/Spacer";
-import ThemeToggler from "~/components/ThemeToggler";
-import Illustration from "~/illustration";
+import AboutSummary from "~/components/About/Summary";
+import BlogSummary from "~/components/Blog/Summary";
+import Layout from "~/components/Layout";
 
 export default function Index() {
   return (
-    <>
-      <div className="relative flex flex-col-reverse">
-        <Illustration />
-        <div className="absolute top-0 w-full">
-          <div className="my-0 mx-auto max-w-screen-lg py-8">
-            <header className="relative text-primary">
-              <nav className="flex justify-between">
-                <div>KTM</div>
-                <ul className="flex space-x-12">
-                  <li>Posts</li>
-                  <li>About</li>
-                  <li>
-                    <ThemeToggler />
-                  </li>
-                </ul>
-              </nav>
-            </header>
-          </div>
-        </div>
+    <Layout hideIllustration={false}>
+      <div className="hidden md:block">
+        <section className="px-8">
+          <AboutSummary />
+        </section>
+        <hr className="my-16 mx-8 border border-primary opacity-10" />
       </div>
-      <main className="my-0 mx-auto max-w-screen-lg">
-        <Link to="/posts"> Posts</Link>
-      </main>
-    </>
+      <section className="px-8">
+        <BlogSummary />
+      </section>
+    </Layout>
   );
 }

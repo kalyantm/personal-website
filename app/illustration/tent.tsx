@@ -9,6 +9,7 @@ export default function Tent() {
       xmlns="http://www.w3.org/2000/svg"
       y="296"
       x="88.5%"
+      className="opacity-0 md:opacity-100"
     >
       <path
         d="M123.108 158.492L59.7305 174.997L129.049 180.938L123.108 158.492Z"

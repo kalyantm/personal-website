@@ -1,5 +1,8 @@
 ---
 title: 90s Mixtape
+readTime: 5
+date: "16 April 2022"
+coverImg: "https://picsum.photos/1024"
 ---
 
 # 90s Mixtape

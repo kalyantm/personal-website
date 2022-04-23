@@ -8,6 +8,7 @@ export default function Surface() {
       xmlns="http://www.w3.org/2000/svg"
       x="66%"
       y="446"
+      className="opacity-0 md:opacity-100"
     >
       <g>
         <path

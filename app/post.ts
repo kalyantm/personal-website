@@ -7,10 +7,16 @@ import { marked } from "marked";
 export type Post = {
   slug: string;
   title: string;
+  readTime: number;
+  date: string;
+  coverImg: string;
 };
 
 export type PostMarkdownAttributes = {
   title: string;
+  readTime: number;
+  date: string;
+  coverImg: string;
 };
 
 // IMP: Relative to server output, not source!
@@ -35,6 +41,7 @@ export async function getPosts() {
       return {
         slug: filename.replace(/\.md$/, ""),
         title: attributes.title,
+        readTime: attributes.readTime,
       };
     })
   );
@@ -49,5 +56,12 @@ export async function getPost(slug: string) {
     `Post ${filepath} is missing attributes`
   );
   const html = marked(body);
-  return { slug, html, title: attributes.title };
+  return {
+    slug,
+    html,
+    title: attributes.title,
+    readTime: attributes.readTime,
+    date: attributes.date,
+    coverImg: attributes.coverImg,
+  };
 }

@@ -19,6 +19,12 @@
   --color-hill-stop-5: #dddddd;
   --color-hill-stop-6: #fbfbfb;
   --color-text: #0e141b;
+  --color-bg: #fbfbfb;
+  --color-secondary: #e94600;
+  --color-accent: #3e007b;
+  --shadow-lg: 0 10px 15px -3px rgb(14, 20, 27, 0.1),
+    0 4px 6px -4px rgb(14, 20, 27, 0.1);
+  --shadow-footer: inset 0 12px 16px 0 rgb(14, 20, 27, 0.05);
 }
 
 :root[data-theme="dark"] {
@@ -44,4 +50,10 @@
   --color-hill-stop-5: #333333;
   --color-hill-stop-6: #0e141b;
   --color-text: #fbfbfb;
+  --color-bg: #0e141b;
+  --color-secondary: #54adff;
+  --color-accent: #faa0b9;
+  --shadow-lg: 0 10px 15px -3px rgb(251, 251, 251, 0.1),
+    0 4px 6px -4px rgb(251, 251, 251, 0.1);
+  --shadow-footer: inset 0 12px 16px 0 rgb(251, 251, 251, 0.025);
 }

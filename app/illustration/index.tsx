@@ -12,7 +12,7 @@ export default function Illustration() {
     <Skeleton>
       <Celestial />
       <Mountains />
-      <Surface />
+      <Surface visibility="hidden" />
       <Tent />
       <Man />
       <Dog />
