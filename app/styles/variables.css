@@ -1,4 +1,5 @@
-:root[data-theme="light"] {
+:root[data-theme="light"],
+.ReactModalPortal[data-theme="light"] {
   --color-sky-stop: #c6e0ee;
   --color-sky-stop-2: #c6e4ee;
   --color-sky-stop-3: #fed1ae;
@@ -27,7 +28,8 @@
   --shadow-footer: inset 0 12px 16px 0 rgb(14, 20, 27, 0.05);
 }
 
-:root[data-theme="dark"] {
+:root[data-theme="dark"],
+.ReactModalPortal[data-theme="dark"] {
   --color-sky-stop: #171233;
   --color-sky-stop-2: #221a53;
   --color-sky-stop-3: #3e007b;

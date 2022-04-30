@@ -42,9 +42,9 @@ export default function Defs() {
         width="1585"
         height="431"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feBlend
           mode="normal"
           in="SourceGraphic"
@@ -95,9 +95,9 @@ export default function Defs() {
         width="154"
         height="154"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feBlend
           mode="normal"
           in="SourceGraphic"
@@ -154,8 +154,8 @@ export default function Defs() {
         y2="116.705"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#002922" />
-        <stop offset="1" stop-color="#002922" stopOpacity="0" />
+        <stop stopColor="#002922" />
+        <stop offset="1" stopColor="#002922" stopOpacity="0" />
       </linearGradient>
       <linearGradient
         id="paint1_linear_320_673"
@@ -165,8 +165,8 @@ export default function Defs() {
         y2="132.825"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#013E33" />
-        <stop offset="1" stop-color="#013E33" stopOpacity="0" />
+        <stop stopColor="#013E33" />
+        <stop offset="1" stopColor="#013E33" stopOpacity="0" />
       </linearGradient>
       <linearGradient
         id="paint2_linear_320_673"
@@ -176,8 +176,8 @@ export default function Defs() {
         y2="138.925"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#013E33" />
-        <stop offset="1" stop-color="#013E33" stopOpacity="0" />
+        <stop stopColor="#013E33" />
+        <stop offset="1" stopColor="#013E33" stopOpacity="0" />
       </linearGradient>
 
       {/* Campfire */}
@@ -188,9 +188,9 @@ export default function Defs() {
         width="17.8477"
         height="17.4062"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
           in="SourceAlpha"
           type="matrix"
@@ -223,9 +223,9 @@ export default function Defs() {
         width="18.793"
         height="15.3438"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
           in="SourceAlpha"
           type="matrix"
@@ -258,9 +258,9 @@ export default function Defs() {
         width="18.5059"
         height="17.6855"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
           in="SourceAlpha"
           type="matrix"
@@ -293,9 +293,9 @@ export default function Defs() {
         width="23.5312"
         height="20.6641"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
           in="SourceAlpha"
           type="matrix"
@@ -328,9 +328,9 @@ export default function Defs() {
         width="17.0996"
         height="16.1777"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
           in="SourceAlpha"
           type="matrix"
@@ -363,9 +363,9 @@ export default function Defs() {
         width="17.0488"
         height="14.9453"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
           in="SourceAlpha"
           type="matrix"
@@ -398,9 +398,9 @@ export default function Defs() {
         width="19.4258"
         height="17.2363"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
           in="SourceAlpha"
           type="matrix"
@@ -433,9 +433,9 @@ export default function Defs() {
         width="18.6523"
         height="15.5547"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
           in="SourceAlpha"
           type="matrix"
@@ -468,9 +468,9 @@ export default function Defs() {
         width="29.1816"
         height="26.0957"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
           in="SourceAlpha"
           type="matrix"
@@ -503,9 +503,9 @@ export default function Defs() {
         width="23.877"
         height="17.8438"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
           in="SourceAlpha"
           type="matrix"
@@ -538,9 +538,9 @@ export default function Defs() {
         width="26.3301"
         height="19.5254"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
           in="SourceAlpha"
           type="matrix"
@@ -573,9 +573,9 @@ export default function Defs() {
         width="23.9785"
         height="23.4902"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
           in="SourceAlpha"
           type="matrix"
@@ -608,9 +608,9 @@ export default function Defs() {
         width="26.7539"
         height="27.2109"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
           in="SourceAlpha"
           type="matrix"
@@ -643,9 +643,9 @@ export default function Defs() {
         width="23.5195"
         height="22.3594"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
           in="SourceAlpha"
           type="matrix"
@@ -678,9 +678,9 @@ export default function Defs() {
         width="36.1738"
         height="23.8691"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
           in="SourceAlpha"
           type="matrix"

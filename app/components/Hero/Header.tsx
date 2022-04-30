@@ -3,7 +3,7 @@ import ThemeToggler from "./ThemeToggler";
 
 export default function Header() {
   return (
-    <header className="hidden md:my-0 md:mx-auto md:block md:w-full md:max-w-screen-lg md:px-8 md:py-8">
+    <header className="hidden md:my-0 md:mx-auto md:block md:block md:w-full md:max-w-screen-lg md:px-8 md:py-8">
       <div className="relative text-primary">
         <nav className="flex justify-between">
           <Link to="/">KTM</Link>

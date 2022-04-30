@@ -1,4 +1,5 @@
 import Illustration from "~/illustration";
+import Hamburger from "./Hamburger";
 import Header from "./Header";
 
 export default function Hero({
@@ -12,6 +13,7 @@ export default function Hero({
       <div className={!hideIllustration ? `absolute top-0 w-full` : ""}>
         <Header />
       </div>
+      <Hamburger />
     </div>
   );
 }

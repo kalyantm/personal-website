@@ -16,6 +16,10 @@ export default function BlogSummary() {
         <BlogItem />
         <BlogItem />
       </div>
+      <div className="flex items-center space-x-2 md:hidden">
+        <h2 className="font-medium">View all posts</h2>
+        <ArrowRightCircle />
+      </div>
     </>
   );
 }

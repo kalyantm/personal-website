@@ -3,7 +3,7 @@ import { Link } from "@remix-run/react";
 export default function BlogItem() {
   return (
     <Link
-      to="/posts"
+      to="/posts/my-first-post"
       className="w-full transform justify-start transition duration-500"
     >
       <div className="aspect-h-4 aspect-w-3 rounded-lg bg-main-bg outline-2 outline-offset-4 outline-accent hover:outline">

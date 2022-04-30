@@ -18,8 +18,8 @@ export default function Netlify() {
           fx="50%"
           fy="-50%"
         >
-          <stop offset="0%" stop-color="#20C6B7" />
-          <stop offset="100%" stop-color="#4D9ABF" />
+          <stop offset="0%" stopColor="#20C6B7" />
+          <stop offset="100%" stopColor="#4D9ABF" />
         </radialGradient>
       </defs>
       <path

@@ -15,13 +15,13 @@ export default function PostSlug() {
   return (
     <Layout>
       <div className="space-y-1/2 flex flex-col items-center justify-center">
-        <span className="mt-8 text-3xl md:my-0">{post.title}</span>
+        <span className="mt-6 text-3xl md:my-0">{post.title}</span>
         <span>
           {post.date} • {post.readTime} min read
         </span>
       </div>
       <div className="my-8 lgV2:-mx-16" style={{ height: 642 }}>
-        <img src={post.coverImg} className="h-full w-full rounded" />
+        <img src={post.coverImg} className="h-full w-full md:rounded" />
       </div>
       <div className="shadow-white relative rounded bg-main-bg p-6 lgV2:-mx-6 lgV2:-mt-32 ">
         <div dangerouslySetInnerHTML={{ __html: post.html }} />

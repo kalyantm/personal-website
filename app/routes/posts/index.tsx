@@ -1,4 +1,4 @@
-import { json, Link, useLoaderData } from "remix";
+import { json, useLoaderData } from "remix";
 import { getPosts } from "~/post";
 import type { Post } from "~/post";
 import FeaturedItem from "~/components/Blog/FeaturedItem";
@@ -17,7 +17,12 @@ export default function Posts() {
   return (
     <Layout>
       <section className="px-8">
-        <h2 className="my-8 md:my-0">All Posts</h2>
+        <h2
+          className="my-6
+         md:my-0"
+        >
+          All Posts
+        </h2>
         <div className="my-8 hidden md:block">
           <FeaturedItem />
           <div className="mt-8 grid grid-cols-1 gap-16 md:grid-cols-3 md:gap-4">

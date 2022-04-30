@@ -1,21 +1,35 @@
-import React from 'react';
-import {Sun, Moon} from 'react-feather';
+import React from "react";
+import { Sun, Moon } from "react-feather";
 
 const ThemeToggler = () => {
-  const [theme, setTheme] = React.useState('light')
-  const nextTheme = theme === 'light' ? 'dark' : 'light'
+  const [theme, setTheme] = React.useState("light");
+  const nextTheme = theme === "light" ? "dark" : "light";
+  console.log("theme", theme);
+
   React.useEffect(() => {
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.dataset.theme = theme
-    } else {
-      document.documentElement.dataset.theme = theme
+    const themePref = localStorage.getItem("theme");
+    if (themePref) {
+      setTheme(themePref);
     }
-  }, [theme])
+  }, []);
+
+  React.useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    document.getElementsByClassName("ReactModalPortal")[0].dataset.theme =
+      theme;
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const switchTheme = () => {
+    setTheme(nextTheme);
+    localStorage.setItem("theme", nextTheme);
+  };
+
   return (
-    <button onClick={() => setTheme(nextTheme)}>
-      {theme === 'dark' ? <Sun /> : <Moon />}
+    <button onClick={switchTheme}>
+      {theme === "dark" ? <Sun /> : <Moon />}
     </button>
-  )
-}
+  );
+};
 
 export default ThemeToggler;

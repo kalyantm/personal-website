@@ -152,8 +152,8 @@ export default function MrCoo() {
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(253.5 389) rotate(90) scale(21 303.382)"
         >
-          <stop stop-color="#D9D9D9" />
-          <stop offset="1" stop-color="#CBCBCB" stop-opacity="0" />
+          <stop stopColor="#D9D9D9" />
+          <stop offset="1" stopColor="#CBCBCB" stopOpacity="0" />
         </radialGradient>
       </defs>
     </svg>
