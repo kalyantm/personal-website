@@ -1,10 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@300;400;600&display=swap");
+
+/* @import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300;8..144,400;8..144,600&display=swap"); */
 body {
   background: var(--color-hill-stop-6);
+  font-family: "Roboto Flex", sans-serif;
 }
 
 h2 {
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
 }

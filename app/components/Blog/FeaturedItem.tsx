@@ -3,7 +3,7 @@ import { Link } from "@remix-run/react";
 export default function FeaturedItem() {
   return (
     <Link to="/posts/90s-mixtape">
-      <div className="bg-white hover:bg-gray-100 flex rounded text-primary shadow-lg outline-2 outline-offset-4 outline-accent hover:outline">
+      <div className="bg-white hover:bg-gray-100 flex rounded text-primary shadow-lg outline-2 outline-offset-4 outline-accent hover:outline dark:bg-grey-500">
         <div className="w-1/3">
           <img
             className="h-full rounded-l object-cover"

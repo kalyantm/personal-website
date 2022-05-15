@@ -26,6 +26,7 @@
   --shadow-lg: 0 10px 15px -3px rgb(14, 20, 27, 0.1),
     0 4px 6px -4px rgb(14, 20, 27, 0.1);
   --shadow-footer: inset 0 12px 16px 0 rgb(14, 20, 27, 0.05);
+  --shadow-card: 0 8px 40px -12px rgba(0, 0, 0, 0.3);
 }
 
 :root[data-theme="dark"],
@@ -55,7 +56,5 @@
   --color-bg: #0e141b;
   --color-secondary: #54adff;
   --color-accent: #faa0b9;
-  --shadow-lg: 0 10px 15px -3px rgb(251, 251, 251, 0.1),
-    0 4px 6px -4px rgb(251, 251, 251, 0.1);
   --shadow-footer: inset 0 12px 16px 0 rgb(251, 251, 251, 0.025);
 }

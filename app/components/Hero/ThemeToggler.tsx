@@ -1,19 +1,24 @@
 import React from "react";
-import { Sun, Moon } from "react-feather";
+import Spacer from "../Spacer";
+import ThemeIcon from "./ThemeIcon";
 
-const ThemeToggler = () => {
-  const [theme, setTheme] = React.useState("light");
+const ThemeToggler = ({ isMobile = false }) => {
+  const [theme, setTheme] = React.useState<"light" | "dark">("light");
   const nextTheme = theme === "light" ? "dark" : "light";
-  console.log("theme", theme);
 
   React.useEffect(() => {
     const themePref = localStorage.getItem("theme");
     if (themePref) {
-      setTheme(themePref);
+      setTheme(themePref as "light" | "dark");
     }
   }, []);
 
   React.useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
     document.documentElement.dataset.theme = theme;
     document.getElementsByClassName("ReactModalPortal")[0].dataset.theme =
       theme;
@@ -21,13 +26,31 @@ const ThemeToggler = () => {
   }, [theme]);
 
   const switchTheme = () => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
     setTheme(nextTheme);
     localStorage.setItem("theme", nextTheme);
   };
 
-  return (
+  return isMobile ? (
+    <button
+      onClick={switchTheme}
+      className="w-content flex items-baseline rounded-full border p-4"
+    >
+      <span>
+        <ThemeIcon theme={theme} />
+      </span>
+      <Spacer width={24} />
+      <span className="text-sm">
+        Switch to {theme === "light" ? "dark" : "light"} mode
+      </span>
+    </button>
+  ) : (
     <button onClick={switchTheme}>
-      {theme === "dark" ? <Sun /> : <Moon />}
+      <ThemeIcon theme={theme} />
     </button>
   );
 };

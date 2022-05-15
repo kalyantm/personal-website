@@ -11,14 +11,14 @@ import type { LinksFunction, MetaFunction, LoaderFunction } from "remix";
 
 import tailwindStylesheetUrl from "./styles/tailwind.css";
 import cssVariablesStylesheetUrl from "./styles/variables.css";
-import globalStylesheetUrl from './styles/global.css';
+import globalStylesheetUrl from "./styles/global.css";
 
 import { getUser } from "./session.server";
 
 export const links: LinksFunction = () => {
   return [
     { rel: "stylesheet", href: tailwindStylesheetUrl },
-    { rel: "stylesheet", href: cssVariablesStylesheetUrl},
+    { rel: "stylesheet", href: cssVariablesStylesheetUrl },
     { rel: "stylesheet", href: globalStylesheetUrl },
   ];
 };

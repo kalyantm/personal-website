@@ -7,7 +7,7 @@ import BlogItem from "~/components/Blog/Item";
 import Spacer from "~/components/Spacer";
 
 export const loader = async () => {
-  return json(await getPosts());
+  return Promise.all([json(await getPosts())]);
 };
 
 export default function Posts() {
@@ -17,12 +17,7 @@ export default function Posts() {
   return (
     <Layout>
       <section className="px-8">
-        <h2
-          className="my-6
-         md:my-0"
-        >
-          All Posts
-        </h2>
+        <h2 className="my-8 md:my-0">All Posts</h2>
         <div className="my-8 hidden md:block">
           <FeaturedItem />
           <div className="mt-8 grid grid-cols-1 gap-16 md:grid-cols-3 md:gap-4">
@@ -33,10 +28,10 @@ export default function Posts() {
         </div>
         <div className="my-8 md:hidden">
           {allPosts.map((item, idx) => (
-            <>
+            <div key={idx}>
               <Spacer height={16} />
               <BlogItem key={idx} />
-            </>
+            </div>
           ))}
         </div>
       </section>
