@@ -1,40 +1,17 @@
 import React from "react";
+import { Theme, useTheme } from "~/utils/theme-provider";
 import Spacer from "../Spacer";
 import ThemeIcon from "./ThemeIcon";
 
 const ThemeToggler = ({ isMobile = false }) => {
-  const [theme, setTheme] = React.useState<"light" | "dark">("light");
-  const nextTheme = theme === "light" ? "dark" : "light";
-
-  React.useEffect(() => {
-    const themePref = localStorage.getItem("theme");
-    if (themePref) {
-      setTheme(themePref as "light" | "dark");
-    }
-  }, []);
-
-  React.useEffect(() => {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-    document.documentElement.dataset.theme = theme;
-    document.getElementsByClassName("ReactModalPortal")[0].dataset.theme =
-      theme;
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+  const [theme, setTheme] = useTheme();
 
   const switchTheme = () => {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-    setTheme(nextTheme);
-    localStorage.setItem("theme", nextTheme);
+    console.log("switching theme...", theme);
+    setTheme((prevTheme) =>
+      prevTheme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT
+    );
   };
-
   return isMobile ? (
     <button
       onClick={switchTheme}

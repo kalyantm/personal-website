@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import useTheme from "~/hooks/useDocumentTheme";
+import { useTheme } from "~/utils/theme-provider";
 
 export default function CampFire() {
   const theme = useTheme();

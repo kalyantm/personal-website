@@ -1,4 +1,4 @@
-:root[data-theme="light"],
+html,
 .ReactModalPortal[data-theme="light"] {
   --color-sky-stop: #c6e0ee;
   --color-sky-stop-2: #c6e4ee;
@@ -29,7 +29,7 @@
   --shadow-card: 0 8px 40px -12px rgba(0, 0, 0, 0.3);
 }
 
-:root[data-theme="dark"],
+html.dark,
 .ReactModalPortal[data-theme="dark"] {
   --color-sky-stop: #171233;
   --color-sky-stop-2: #221a53;

@@ -2,7 +2,7 @@
 const GOOGLE_FIT_ENDPOINT =
   "https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate";
 const access_token =
-  "ya29.A0ARrdaM9piLQPS_00FBQPEfxt7J5TGVuee3K4FxgCYUDCAMGRVwC0HlN4rK8xrgD6qonUVpBY7pfUQiVMgYZag0tHr9JcnXhhz-LdZiyC-xx2PlGXt7_hvy0PPthqINEPPkCaNf6ztKiau1ldu0HzNnkc3fZo";
+  "ya29.a0ARrdaM_xWs0LGXIy0MpxKIHoHb6fkkqowO_40PoiuImrb3hN6BoqPLoSO3tQwQhogdoSetwQHFvsvklWFrjC84LBgzKLXoPb9XSrPivZDXgdPf75Xjp-imlt7u5yg9yyRj_j6cupZjQA_ZouVeJKF80NNnr2";
 
 const fitnessOptions = {
   aggregateBy: [

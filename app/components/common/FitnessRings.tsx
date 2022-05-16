@@ -54,7 +54,7 @@ export default function FitnessRings({ move, exercise, heart, step }: Props) {
       height={200}
       fill="none"
       initial="hidden"
-      animate="visible"
+      whileInView="visible"
     >
       <circle
         cx="50%"

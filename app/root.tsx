@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import {
   json,
   Links,
@@ -8,11 +9,14 @@ import {
   ScrollRestoration,
 } from "remix";
 import type { LinksFunction, MetaFunction, LoaderFunction } from "remix";
-
+import {
+  NonFlashOfWrongThemeEls,
+  ThemeProvider,
+  useTheme,
+} from "~/utils/theme-provider";
 import tailwindStylesheetUrl from "./styles/tailwind.css";
 import cssVariablesStylesheetUrl from "./styles/variables.css";
 import globalStylesheetUrl from "./styles/global.css";
-
 import { getUser } from "./session.server";
 
 export const links: LinksFunction = () => {
@@ -39,12 +43,14 @@ export const loader: LoaderFunction = async ({ request }) => {
   });
 };
 
-export default function App() {
+function App() {
+  const [theme] = useTheme();
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" className={clsx("h-full", theme)}>
       <head>
         <Meta />
         <Links />
+        <NonFlashOfWrongThemeEls />
       </head>
       <body className="h-full">
         <Outlet />
@@ -53,5 +59,13 @@ export default function App() {
         <LiveReload />
       </body>
     </html>
+  );
+}
+
+export default function AppWithProviders() {
+  return (
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
   );
 }

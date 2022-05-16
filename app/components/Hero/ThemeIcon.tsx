@@ -1,7 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion";
+import { Theme } from "~/utils/theme-provider";
 
 interface Props {
-  theme: "dark" | "light";
+  theme: Theme | null;
 }
 
 const width = 14;
@@ -81,6 +82,7 @@ const ThemeIcon = ({ theme }: Props) => {
       fill="var(--color-text)"
       strokeLinecap="round"
       strokeLinejoin="round"
+      initial={false}
       animate={theme === "light" ? "sun" : "moon"}
       variants={circleMain}
       {...lineProps}
@@ -90,18 +92,21 @@ const ThemeIcon = ({ theme }: Props) => {
         cy="9"
         r="8"
         mask="url(#moon-mask)"
+        initial={false}
         animate={theme === "light" ? "sun" : "moon"}
         variants={celestial}
         {...lineProps}
       />
-      <mask id="moon-mask">
-        <rect x="0" y="0" width="18" height="18" fill="#FFF" />
-        <motion.circle
-          transition={{ ease: "easeIn", duration: 0.25, bounce: 2 }}
-          variants={circleMask}
-          fill="black"
-        />
-      </mask>
+      <AnimatePresence initial={false}>
+        <motion.mask id="moon-mask" initial={false}>
+          <rect x="0" y="0" width="18" height="18" fill="#FFF" />
+          <motion.circle
+            transition={{ ease: "easeIn", duration: 0.5, bounce: 2 }}
+            variants={circleMask}
+            fill="black"
+          />
+        </motion.mask>
+      </AnimatePresence>
       <AnimatePresence initial={false}>
         {theme === "light" && (
           <motion.g
