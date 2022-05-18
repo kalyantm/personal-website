@@ -1,8 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useTheme } from "~/utils/theme-provider";
+import { Theme, useTheme } from "~/utils/theme-provider";
 
 export default function CampFire() {
-  const theme = useTheme();
+  const [theme] = useTheme();
   const fireVariants = {
     dark: {
       opacity: 1,
@@ -142,7 +142,7 @@ export default function CampFire() {
 
       {/* Lit fire */}
       <AnimatePresence>
-        {theme === "dark" && (
+        {theme === Theme.DARK && (
           <motion.g
             filter="url(#filter9_d_334_616)"
             initial={{ opacity: 0 }}

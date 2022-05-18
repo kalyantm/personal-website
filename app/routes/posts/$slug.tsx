@@ -21,12 +21,12 @@ export default function PostSlug() {
         </span>
       </div>
       <div
-        className="my-8 rounded p-4 md:p-0 lgV2:-mx-16"
-        style={{ height: 642 }}
+        className="my-8 rounded py-4 px-4 md:px-8"
+        style={{ maxHeight: 642 }}
       >
         <img src={post.coverImg} className="h-full w-full rounded" />
       </div>
-      <div className="shadow-white relative rounded bg-main-bg p-6 md:p-12 lgV2:-mx-6 lgV2:-mt-32 ">
+      <div className="shadow-white relative rounded bg-main-bg px-4 py-8 md:px-8">
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
       </div>
     </Layout>
