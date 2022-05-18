@@ -1,8 +1,17 @@
+import { useLoaderData } from "remix";
 import Layout from "~/components/Layout";
 import Spacer from "~/components/Spacer";
+import { getSnippets } from "~/snippet";
+import type { Snippet } from "~/snippet";
 import SnippetsSection from "./SnippetsSection";
 
+export const loader = async () => {
+  return Promise.all(await getSnippets());
+};
+
 export default function Snippets() {
+  const snippets = useLoaderData<Snippet[]>();
+  console.log("snippets", snippets);
   return (
     <Layout>
       <section className="px-8">
@@ -15,7 +24,7 @@ export default function Snippets() {
       </section>
       <Spacer height={64} />
       <section className="px-8">
-        <SnippetsSection />
+        <SnippetsSection snippets={snippets} />
       </section>
     </Layout>
   );

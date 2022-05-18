@@ -1,4 +1,4 @@
-import { json, useLoaderData } from "remix";
+import { useLoaderData } from "remix";
 import { getPosts } from "~/post";
 import type { Post } from "~/post";
 import FeaturedItem from "~/components/Blog/FeaturedItem";
@@ -7,12 +7,12 @@ import BlogItem from "~/components/Blog/Item";
 import Spacer from "~/components/Spacer";
 
 export const loader = async () => {
-  return Promise.all([json(await getPosts())]);
+  return Promise.all(await getPosts());
 };
 
 export default function Posts() {
   const posts = useLoaderData<Post[]>();
-  console.log(posts);
+  console.log("posts", posts);
   const allPosts = new Array(10).fill(0);
   return (
     <Layout>
