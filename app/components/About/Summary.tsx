@@ -1,3 +1,6 @@
+import { ArrowRightCircle } from "react-feather";
+import { Link } from "remix";
+
 export default function AboutSummary() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 md:gap-4">
@@ -8,15 +11,22 @@ export default function AboutSummary() {
           alt=""
         />
       </div>
-      <div className="col-span-2 mt-8 flex flex-col justify-around md:mt-0">
+      <div className="col-span-2 flex flex-col space-y-8">
         <h1 className="text-3xl">
           👋 Hi, I'm Kalyan. I try to solve interesting problems using software.
         </h1>
-        <span className="text-base">
-          When I'm not writing code, you can find me sampling various kinds of
-          coffee, enjoying a game of football or searching for the next
-          incredible view in my travels.
+        <span className="text-xl">
+          I'm a product focused frontend and mobile engineer who strives to
+          write software that is simple, reliable and understandable.
         </span>
+        <span className="text-xl">
+          I'm currently building the mobile app of{" "}
+          <a href="https://proton.ai/">proton.ai</a>
+        </span>
+        <Link to="/about" className="flex items-center space-x-2">
+          <span className="text-sm font-bold">Learn more about me</span>
+          <ArrowRightCircle size={24} />
+        </Link>
       </div>
     </div>
   );

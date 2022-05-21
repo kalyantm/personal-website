@@ -13,24 +13,27 @@ export const loader = async () => {
 export default function Posts() {
   const posts = useLoaderData<Post[]>();
   console.log("posts", posts);
-  const allPosts = new Array(10).fill(0);
+  const featured = posts.filter((post) => post.featured);
+  const regular = posts.filter((post) => !post.featured);
   return (
     <Layout>
       <section className="px-8">
         <h2 className="my-8 md:my-0">All Posts</h2>
         <div className="my-8 hidden md:block">
-          <FeaturedItem />
+          {featured.map((post) => (
+            <FeaturedItem post={post} key={post.slug} />
+          ))}
           <div className="mt-8 grid grid-cols-1 gap-16 md:grid-cols-3 md:gap-4">
-            {allPosts.slice(1, allPosts.length).map((item, idx) => (
-              <BlogItem key={idx} />
+            {regular.map((item, idx) => (
+              <BlogItem post={item} key={idx} />
             ))}
           </div>
         </div>
         <div className="my-8 md:hidden">
-          {allPosts.map((item, idx) => (
+          {posts.map((item, idx) => (
             <div key={idx}>
               <Spacer height={16} />
-              <BlogItem key={idx} />
+              <BlogItem post={item} key={idx} />
             </div>
           ))}
         </div>

@@ -10,6 +10,8 @@ export type Post = {
   readTime: number;
   date: string;
   coverImg: string;
+  desc: string;
+  featured?: boolean;
 };
 
 export type PostMarkdownAttributes = {
@@ -17,6 +19,8 @@ export type PostMarkdownAttributes = {
   readTime: number;
   date: string;
   coverImg: string;
+  featured?: boolean;
+  desc: string;
 };
 
 // IMP: Relative to server output, not source!
@@ -41,7 +45,11 @@ export async function getPosts() {
       return {
         slug: filename.replace(/\.md$/, ""),
         title: attributes.title,
+        desc: attributes.desc,
         readTime: attributes.readTime,
+        coverImg: attributes.coverImg,
+        featured: !!attributes.featured,
+        date: attributes.date,
       };
     })
   );
@@ -63,5 +71,7 @@ export async function getPost(slug: string) {
     readTime: attributes.readTime,
     date: attributes.date,
     coverImg: attributes.coverImg,
+    featured: !!attributes.featured,
+    desc: attributes.desc,
   };
 }

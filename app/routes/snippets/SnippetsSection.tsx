@@ -23,13 +23,12 @@ import { Link } from "remix";
 // ];
 
 export default function SnippetsSection({ snippets }) {
-  const outline = "outline-book-red";
   return (
     <div className="grid grid-cols-1 gap-16 md:grid-cols-2 md:gap-4">
       {snippets.map((snippet, index) => (
         <Link
           to={snippet.slug}
-          className={`bg-white aspect-h-4 aspect-w-3 flex flex-col space-y-4 rounded-lg bg-main-bg p-4 shadow-lg outline-2 outline-offset-4 dark:bg-grey-500 ${outline} hover:outline`}
+          className={`bg-white aspect-h-4 aspect-w-3 flex flex-col space-y-4 rounded-lg bg-main-bg p-4 shadow-lg outline-2 outline-offset-4 outline-accent hover:outline dark:bg-grey-500`}
           key={index}
         >
           <div className="flex items-center space-x-4">

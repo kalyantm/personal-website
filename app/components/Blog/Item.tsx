@@ -1,23 +1,37 @@
 import { Link } from "@remix-run/react";
+import { TrendingUp } from "react-feather";
+import Spacer from "../Spacer";
 
-export default function BlogItem() {
+interface Props {
+  post: any;
+}
+
+const POST_LINK_PREFIX = `/posts`;
+export default function BlogItem({ post }: Props) {
+  console.log("post", post);
   return (
     <Link
-      to="/posts/my-first-post"
-      className="w-full transform justify-start transition duration-500"
+      to={`${POST_LINK_PREFIX}/${post.slug}`}
+      className="relative w-full transform justify-start transition duration-500"
     >
-      <div className="aspect-h-4 aspect-w-3 rounded-lg bg-main-bg outline-2 outline-offset-4 outline-accent hover:outline">
+      {post.featured && (
+        <span className="absolute top-2 -left-2 flex items-center space-x-2 rounded-lg bg-book-red p-1 text-xs font-bold text-primary">
+          <TrendingUp size={16} />
+          <span>Featured</span>
+        </span>
+      )}
+      <div className="aspect-h-4 aspect-w-3 h-full rounded-lg bg-main-bg outline-2 outline-offset-4 outline-accent hover:outline">
         <img
           className="w-full rounded-lg object-cover object-center transition"
-          src="https://picsum.photos/350/350"
+          src={post.coverImg}
           alt=""
         />
-        <div className="py-4">
-          <span className="mb-2 text-xl font-medium">Blog post 1</span>
-          <p className="mb-4 text-base">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
+        <Spacer height={16} />
+        <div className="flex flex-col space-y-2">
+          <span className="text-sm font-bold">
+            {post.date} • {post.readTime} min read
+          </span>
+          <span className="text-xl font-medium">{post.title}</span>
         </div>
       </div>
     </Link>

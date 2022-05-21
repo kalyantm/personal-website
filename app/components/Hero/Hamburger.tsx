@@ -6,6 +6,7 @@ import ThemeToggler from "./ThemeToggler";
 import { Link } from "@remix-run/react";
 import Spacer from "../Spacer";
 import HamburgerIcon from "./HamburgerIcon";
+import Logo from "./Logo";
 
 const NAV_LINKS = [
   { label: "Home", to: "/" },
@@ -32,7 +33,7 @@ export default function Hamburger() {
             exit={{ opacity: 0 }}
           >
             <Spacer height={16} />
-            <div>KTM</div>
+            <Logo />
             <Spacer height={64} />
             <motion.ul
               initial={{ x: "-100vw" }}

@@ -34,15 +34,14 @@ const CONTENT_MAP = {
 
 interface Props {
   type: "music" | "location" | "read" | "fitness";
-  outline: string;
   children?: React.ReactNode;
   coverImg?: string | React.ReactNode;
 }
 
-export default function NowCard({ type, outline, children, coverImg }: Props) {
+export default function NowCard({ type, children, coverImg }: Props) {
   return (
     <div
-      className={`bg-white aspect-h-4 aspect-w-3 flex flex-col rounded-lg bg-main-bg shadow-lg outline-2 outline-offset-4 dark:bg-grey-500 md:flex-row ${outline} hover:outline`}
+      className={`bg-white aspect-h-4 aspect-w-3 my-4 flex flex-col rounded-lg bg-main-bg shadow-lg outline-2 outline-offset-4 outline-accent hover:outline dark:bg-grey-500 md:flex-row`}
     >
       {typeof coverImg === "string" ? (
         <img
