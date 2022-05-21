@@ -1,4 +1,4 @@
-import { Link } from "@remix-run/react";
+import Link from "../Link";
 import Logo from "./Logo";
 import ThemeToggler from "./ThemeToggler";
 
