@@ -1,5 +1,5 @@
 import React from "react";
-import { useLoaderData } from "remix";
+import { ActionFunction, useLoaderData } from "remix";
 import AboutSummary from "~/components/About/Summary";
 import BlogSummary from "~/components/Blog/Summary";
 import Layout from "~/components/Layout";

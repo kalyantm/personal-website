@@ -1,5 +1,5 @@
 import ContactSummary from "../Contact/Summary";
-import NewsLetter from "../NewsLetter";
+import NewsLetter from "./newsletter";
 import { Heart } from "react-feather";
 import Spacer from "../Spacer";
 import TailwindIcon from "../../illustration/tailwind";

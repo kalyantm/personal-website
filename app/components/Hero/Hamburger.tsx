@@ -12,6 +12,7 @@ const NAV_LINKS = [
   { label: "Home", to: "/" },
   { label: "Posts", to: "/posts" },
   { label: "About", to: "/about" },
+  { label: "Snippets", to: "/snippets" },
 ];
 
 export default function Hamburger() {

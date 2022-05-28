@@ -10,6 +10,7 @@ export default function Link({ to, children, ...rest }: LinkProps) {
     backgroundImage:
       "linearGradient(transparent, transparent), linearGradient(var(--color-accent), var(--color-accent))",
     fontWeight: "bold",
+    color: "var(--color-accent)",
   };
 
   return (

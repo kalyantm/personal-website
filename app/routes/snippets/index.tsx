@@ -1,6 +1,5 @@
 import { useLoaderData } from "remix";
 import Layout from "~/components/Layout";
-import Spacer from "~/components/Spacer";
 import { getSnippets } from "~/snippet";
 import type { Snippet } from "~/snippet";
 import SnippetsSection from "./SnippetsSection";
@@ -15,11 +14,11 @@ export default function Snippets() {
   return (
     <Layout>
       <section className="px-8">
-        <h2 className="mb-4">Snippets</h2>
+        <h2 className="my-8 md:my-0 md:mb-8">Snippets</h2>
         <span>
-          A collection of code titbits about common problems that we all run
-          into while developing web or mobile apps. I try my best to be as
-          informative about setup or execution.{" "}
+          A collection of bite sized code snippets to interesting problems that
+          I come across while developing web or mobile apps. I try my best to be
+          as informative about setup or execution.{" "}
         </span>
       </section>
       <section className="mt-8 px-8">
