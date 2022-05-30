@@ -55,7 +55,9 @@ export default function NowCard({ type, children, coverImg }: Props) {
       <div className="py-4 px-4">
         <div className="flex items-center space-x-1 text-xs font-normal">
           {CONTENT_MAP[type].icon}
-          <span>{CONTENT_MAP[type].header}</span>
+          <span className="text-xs font-bold uppercase">
+            {CONTENT_MAP[type].header}
+          </span>
         </div>
         <Spacer height={16} />
         {children}

@@ -2,7 +2,7 @@ import Layout from "~/components/Layout";
 import NowCard from "./NowCard";
 import { useLoaderData } from "@remix-run/react";
 import { getCurrentlyListening } from "~/currently-listening";
-import { ArrowRight, Droplet, Heart } from "react-feather";
+import { ArrowRight, Book, Droplet, Film, MapPin } from "react-feather";
 import Spacer from "~/components/Spacer";
 import blrImg from "../../assets/blr.jpeg";
 import { getCurrentFitness } from "~/current-fitness";
@@ -67,84 +67,70 @@ export default function Posts() {
       </section>
       <section className="my-16 px-8">
         <h2 className="block">Right now</h2>
-        <div className="my-8 grid grid-cols-1 gap-16 md:grid-cols-2 md:gap-4">
-          <NowCard type="location" coverImg={blrImg}>
-            <div className="flex flex-col">
-              <p className="max-w-[240px] truncate text-xl">Bangalore, IN</p>
-              <Spacer height={16} />
-              <p className="font-light truncate text-sm md:max-w-[240px]">
-                {date.replace(",", " • ")}
-              </p>
-              <img
-                src={countryIcon}
-                width={24}
-                height={24}
-                className="rounded-full"
-              />
+        <div className="my-8">
+          <a href="https://en.wikipedia.org/wiki/Bangalore">
+            <div className="flex items-center space-x-2">
+              <MapPin />
+              <span className="text-xs font-bold uppercase">Currently in</span>
             </div>
-          </NowCard>
-          <NowCard
-            type="music"
-            coverImg={playingResponse.currentlyPlaying.albumImageUrl}
-          >
-            <a
-              href={playingResponse.currentlyPlaying.songUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="flex flex-col"
-            >
-              <p className="truncate text-xl md:max-w-[240px]">
-                {playingResponse.currentlyPlaying.title}
-              </p>
-              <Spacer height={16} />
-              <p className="font-light truncate text-sm md:max-w-[240px]">
-                {playingResponse.currentlyPlaying.artist} •{" "}
-                {playingResponse.currentlyPlaying.album}
-              </p>
-              <Spacer height={32} />
-              <span className="flex items-center">
-                <p className="hover:accent text-sm font-bold">View song</p>
-                <Spacer width={4} />
-                <ArrowRight size={16} />
+            <Spacer height={4} />
+            <span>Bangalore • India</span>
+          </a>
+          <Spacer height={32} />
+          <div>
+            <div className="flex items-center space-x-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                fill="var(--color-text)"
+                className="rounded-full"
+              >
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path d="M12 2c5.55 0 10 4.5 10 10s-4.5 10-10 10S2 17.5 2 12 6.5 2 12 2zm0 2c-4.395 0-8 3.605-8 8s3.605 8 8 8 8-3.605 8-8c0-4.414-3.573-8-8-8zm3.75 12.65c-2.35-1.45-5.3-1.75-8.8-.95-.35.1-.65-.15-.75-.45-.1-.35.15-.65.45-.75 3.8-.85 7.1-.5 9.7 1.1.35.15.4.55.25.85-.2.3-.55.4-.85.2zm1-2.7c-2.7-1.65-6.8-2.15-9.95-1.15-.4.1-.85-.1-.95-.5-.1-.4.1-.85.5-.95 3.65-1.1 8.15-.55 11.25 1.35.3.15.45.65.2 1s-.7.5-1.05.25zM6.3 9.75c-.5.15-1-.15-1.15-.6-.15-.5.15-1 .6-1.15 3.55-1.05 9.4-.85 13.1 1.35.45.25.6.85.35 1.3-.25.35-.85.5-1.3.25C14.7 9 9.35 8.8 6.3 9.75z" />
+              </svg>
+              <span className="text-xs font-bold uppercase">
+                Currently jamming to
               </span>
-            </a>
-          </NowCard>
-          <NowCard type="read" />
-          <NowCard
-            type="fitness"
-            coverImg={
-              <FitnessRings
-                move={fitnessResponse.move}
-                exercise={fitnessResponse.exercise}
-                heart={fitnessResponse.heart}
-                step={fitnessResponse.step}
-              />
-            }
-          >
-            <span className="flex items-baseline">
-              <Heart size={16} />
-              <Spacer width={8} />
-              <p className="text-xl">{fitnessResponse.heart}</p>
-              <Spacer width={4} />
-              <span className="font-light text-sm">heart points</span>
+            </div>
+            <Spacer height={4} />
+            {playingResponse.currentlyPlaying.isPlaying ? (
+              <a href={playingResponse.currentlyPlaying.songUrl}>
+                <span>
+                  {playingResponse.currentlyPlaying.title} •{" "}
+                  {playingResponse.currentlyPlaying.artist}
+                </span>
+              </a>
+            ) : (
+              <span>Nothing, it's really quiet right now.</span>
+            )}
+          </div>
+          <Spacer height={32} />
+          <a href="https://www.goodreads.com/book/show/39286958-measure-what-matters">
+            <div className="flex items-center space-x-2">
+              <Book />
+              <span className="text-xs font-bold uppercase">
+                Currenting reading
+              </span>
+            </div>
+            <Spacer height={4} />
+            <span>
+              Measure What Matters: OKRs: The Simple Idea that Drives 10x Growth
+              • John Doerr
             </span>
-            <Spacer height={8} />
-            <span className="flex items-baseline">
-              <Heart size={16} />
-              <Spacer width={8} />
-              <p className="text-xl">{fitnessResponse.step}</p>
-              <Spacer width={4} />
-              <span className="font-light text-sm">steps</span>
-            </span>
-            <Spacer height={8} />
-            <span className="flex items-baseline">
-              <Droplet size={16} />
-              <Spacer width={8} />
-              <p className="text-xl">{parseInt(fitnessResponse.move, 10)}</p>
-              <Spacer width={4} />
-              <span className="font-light text-sm">kCal burned</span>
-            </span>
-          </NowCard>
+          </a>
+          <Spacer height={32} />
+          <a href="https://www.netflix.com/title/80057281">
+            <div className="flex items-center space-x-2">
+              <Film />
+              <span className="text-xs font-bold uppercase">
+                Currenting watching
+              </span>
+            </div>
+            <Spacer height={4} />
+            <span>Stranger Things • Season 4</span>
+          </a>
         </div>
       </section>
     </Layout>

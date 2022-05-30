@@ -15,7 +15,7 @@ export default function BlogItem({ post }: Props) {
       className="relative w-full transform justify-start transition duration-500"
     >
       {post.featured && (
-        <span className="absolute top-2 -left-2 flex items-center space-x-2 rounded-lg bg-book-red p-1 text-xs font-bold text-primary">
+        <span className="absolute top-2 -left-2 flex items-center space-x-2 rounded-lg bg-accent p-1 text-xs font-bold text-main-bg">
           <TrendingUp size={16} />
           <span>Featured</span>
         </span>

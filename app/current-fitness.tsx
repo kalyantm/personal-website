@@ -1,4 +1,3 @@
-// import { getTime } from "date-fns";
 const GOOGLE_FIT_ENDPOINT =
   "https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate";
 const access_token =
