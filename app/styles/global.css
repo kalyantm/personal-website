@@ -32,3 +32,31 @@ h2 {
   background-size: 100% 3px;
   background-position: 0 100%;
 }
+
+code {
+  padding: 16px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  background: #171515 !important;
+  border-radius: 8px;
+}
+
+.blog-post p {
+  margin-bottom: 24px;
+}
+
+.blog-post h2 {
+  margin-top: 64px;
+  margin-bottom: 32px;
+}
+
+.blog-post ul {
+  padding-left: 16px;
+  margin-bottom: 32px;
+  /* list-style: none; */
+}
+
+.blog-post li {
+  align-items: baseline;
+  margin-bottom: 16px;
+}

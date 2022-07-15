@@ -11,6 +11,7 @@ export type Post = {
   date: string;
   coverImg: string;
   desc: string;
+  sections: string[];
   featured?: boolean;
 };
 
@@ -21,6 +22,7 @@ export type PostMarkdownAttributes = {
   coverImg: string;
   featured?: boolean;
   desc: string;
+  sections: string[];
 };
 
 // IMP: Relative to server output, not source!
@@ -43,20 +45,21 @@ export async function getPosts() {
         `${filename} has bad meta data!`
       );
       return {
-        slug: filename.replace(/\.md$/, ""),
+        slug: filename.replace(/\.mdx$/, ""),
         title: attributes.title,
         desc: attributes.desc,
         readTime: attributes.readTime,
         coverImg: attributes.coverImg,
         featured: !!attributes.featured,
         date: attributes.date,
+        sections: attributes.sections
       };
     })
   );
 }
 
 export async function getPost(slug: string) {
-  const filepath = path.join(postsPath, slug + ".md");
+  const filepath = path.join(postsPath, slug + ".mdx");
   const file = await fs.readFile(filepath);
   const { attributes, body } = parseFrontMatter(file.toString());
   invariant(
@@ -73,5 +76,6 @@ export async function getPost(slug: string) {
     coverImg: attributes.coverImg,
     featured: !!attributes.featured,
     desc: attributes.desc,
+    sections: attributes.sections
   };
 }

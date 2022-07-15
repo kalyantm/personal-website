@@ -8,3 +8,13 @@ icon: "https://picsum.photos/50/50"
 # Animated Hamburger
 
 - Yada yada yada.
+
+<pre>
+<code class="language-js">
+import a from 'a';
+const newA = `new${a()}`;
+console.log('newA', newA)
+</code>
+</pre>
+
+- More stuff explained here.

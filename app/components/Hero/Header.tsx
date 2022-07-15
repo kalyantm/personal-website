@@ -11,7 +11,7 @@ export default function Header() {
           <ul className="flex space-x-12">
             <Link to="/posts">Posts</Link>
             <Link to="/about">About</Link>
-            <Link to="/snippets">Snippets</Link>
+            {/* <Link to="/snippets">Snippets</Link> */}
             <li>
               <ThemeToggler />
             </li>

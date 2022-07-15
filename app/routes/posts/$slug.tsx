@@ -4,6 +4,8 @@ import invariant from "tiny-invariant";
 import { getPost } from "~/post";
 import Layout from "~/components/Layout";
 import Breadcrumbs from "~/components/Breadcrumbs";
+import { ProgressIndicator } from "~/components/common/ScrollIndicator";
+import Spacer from "~/components/Spacer";
 
 export const loader: LoaderFunction = async ({ params }) => {
   invariant(params.slug, "expected params.slug");
@@ -35,8 +37,20 @@ export default function PostSlug() {
       >
         <img src={post.coverImg} className="h-full w-full rounded" />
       </div>
-      <div className="shadow-white relative rounded bg-main-bg px-4 md:px-8">
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
+      <div className="shadow-white relative rounded bg-main-bg px-4 md:px-8 flex">
+        <article className="blog-post flex-[1_1_700px]" dangerouslySetInnerHTML={{ __html: post.html }} />
+        <aside className="hidden lg:flex flex-[0_1000000_250px] justify-center sticky top-4 ml-16 max-h-screen">
+          <ul className="ml-4">
+            <h2 className="mb-4">Table of contents</h2>
+            {post.sections.map(section => (
+              <li className="mb-4" key={section}>{section}</li>
+            ))}
+          </ul>
+          <ProgressIndicator className="-mr-8" />
+        </aside>
+        <div className="lg:hidden">
+          <ProgressIndicator isMobile />
+        </div>
       </div>
     </Layout>
   );

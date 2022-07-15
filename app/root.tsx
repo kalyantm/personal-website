@@ -51,8 +51,9 @@ function App() {
         <Meta />
         <Links />
         <NonFlashOfWrongThemeEls />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark.min.css" />
       </head>
-      <body className="h-full">
+      <body className="min-h-full">
         <Outlet />
         <ScrollRestoration />
         <Scripts />

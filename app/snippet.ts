@@ -3,6 +3,8 @@ import fs from "fs/promises";
 import parseFrontMatter from "front-matter";
 import invariant from "tiny-invariant";
 import { marked } from "marked";
+import rehypeHighlight from 'rehype-highlight';
+import {rehype} from 'rehype';
 
 export type Snippet = {
   slug: string;
@@ -58,11 +60,16 @@ export async function getSnippet(slug: string) {
     isValidSnippetAttributes(attributes),
     `Snippet ${filepath} is missing attributes`
   );
-  const html = marked(body);
-  console.log("reutrning in getSnipp", slug, html, attributes);
+  // const html = marked(body);
+  const html = await rehype()
+  .data('settings', {fragment: true})
+  .use(rehypeHighlight)
+  .process(marked(body))
+
+  console.log('html:::',String(html));
   return {
     slug,
-    html,
+    html: html.value,
     title: attributes.title,
     desc: attributes.desc,
     icon: attributes.icon,
