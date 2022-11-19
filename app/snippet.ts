@@ -60,13 +60,11 @@ export async function getSnippet(slug: string) {
     isValidSnippetAttributes(attributes),
     `Snippet ${filepath} is missing attributes`
   );
-  // const html = marked(body);
   const html = await rehype()
   .data('settings', {fragment: true})
   .use(rehypeHighlight)
   .process(marked(body))
 
-  console.log('html:::',String(html));
   return {
     slug,
     html: html.value,

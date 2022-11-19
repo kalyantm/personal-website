@@ -20,10 +20,8 @@ export default function Index() {
   console.log("orderd", orderedPosts);
   return (
     <Layout hideIllustration={false}>
-      <div className="hidden md:block">
-        <section className="px-8">
+      <div className="">
           <AboutSummary />
-        </section>
         <hr className="my-16 mx-8 border border-primary opacity-10" />
       </div>
       <section className="px-8">

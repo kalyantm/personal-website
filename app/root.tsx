@@ -17,6 +17,8 @@ import {
 import tailwindStylesheetUrl from "./styles/tailwind.css";
 import cssVariablesStylesheetUrl from "./styles/variables.css";
 import globalStylesheetUrl from "./styles/global.css";
+import codeLightTheme from './styles/light-theme.css';
+import codeDarkTheme from './styles/dark-theme.css';
 import { getUser } from "./session.server";
 
 export const links: LinksFunction = () => {
@@ -38,6 +40,7 @@ type LoaderData = {
 };
 
 export const loader: LoaderFunction = async ({ request }) => {
+
   return json<LoaderData>({
     user: await getUser(request),
   });
@@ -45,13 +48,14 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 function App() {
   const [theme] = useTheme();
+  const codeTheme = theme === 'dark' ? codeDarkTheme : codeLightTheme;
   return (
     <html lang="en" className={clsx("h-full", theme)}>
       <head>
         <Meta />
         <Links />
         <NonFlashOfWrongThemeEls />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark.min.css" />
+        <link rel="stylesheet" href={codeTheme} />
       </head>
       <body className="min-h-full">
         <Outlet />

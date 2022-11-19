@@ -3,6 +3,8 @@ import fs from "fs/promises";
 import parseFrontMatter from "front-matter";
 import invariant from "tiny-invariant";
 import { marked } from "marked";
+import rehypeHighlight from 'rehype-highlight';
+import {rehype} from 'rehype';
 
 export type Post = {
   slug: string;
@@ -66,10 +68,15 @@ export async function getPost(slug: string) {
     isValidPostAttributes(attributes),
     `Post ${filepath} is missing attributes`
   );
-  const html = marked(body);
+
+  const html = await rehype()
+  .data('settings', {fragment: true})
+  .use(rehypeHighlight)
+  .process(marked(body))
+
   return {
     slug,
-    html,
+    html: html.value,
     title: attributes.title,
     readTime: attributes.readTime,
     date: attributes.date,

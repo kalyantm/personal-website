@@ -1,20 +1,10 @@
 import { ArrowRightCircle } from "react-feather";
 import { Link } from "remix";
-import pp from "../../assets/pp-final.jpeg";
 
 export default function AboutSummary() {
   return (
     <div className="flex flex-col space-y-8">
-      <div className="aspect-h-4 aspect-w-3 rounded-lg bg-main-bg">
-        <img
-          className="mx-auto rounded-lg md:mx-0"
-          src={pp}
-          alt=""
-          width={150}
-          height={150}
-        />
-      </div>
-      <div className="ml-16 flex flex-col space-y-8 border-l-2 border-l-accent pl-8">
+      <div className="ml-8 flex flex-col space-y-8 md:border-l-2 md:border-l-accent md:pl-8">
         <h1 className="text-3xl">
           👋 Hi, I'm Kalyan. I try to solve interesting problems using software.
         </h1>

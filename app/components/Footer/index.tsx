@@ -10,9 +10,10 @@ export default function Footer() {
   return (
     <div className="my-0 mx-auto max-w-screen-lg px-8 py-8 text-primary">
       <ContactSummary />
-      <div className="my-16">
+      {/* <div className="my-16">
         <NewsLetter />
-      </div>
+      </div> */}
+      <div className="my-16" />
       <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
         <div className="hidden flex-col md:block">
           <span>All rights reserved © 2022 • Illustrations by KTM</span>

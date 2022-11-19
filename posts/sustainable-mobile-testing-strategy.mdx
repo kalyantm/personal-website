@@ -36,6 +36,14 @@ We have a tasks feature in our app that lets sales reps create tasks, edit tasks
 
 // Code to show test suite
 
+```js 
+import a from 'a';
+
+const newFunction = (arg: string[]) => {
+    return arg.slice(0,1).map(a => ({ a }))
+}
+```
+
 First, we have some initial code we run using the beforeEach function. We reload the app between test cases, so that each test runs in an isolated environment, and we don’t have any data or methods leaking dat between tests. Then, we use detox's intuitive helper functions to interact with various elements on the screen, like buttons and text inputs, and perform gestures like swipes. Finally, we assert that we can indeed see the two newly created tasks. We have similar test suites for task edits, changes to task status, and other task state mutations. You can see this in action at the end of the article in the attached video.
 
 ## CATCHING A BUG!

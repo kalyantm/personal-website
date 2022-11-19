@@ -1,44 +1,8 @@
 import Layout from "~/components/Layout";
-import NowCard from "./NowCard";
-import { useLoaderData } from "@remix-run/react";
-import { getCurrentlyListening } from "~/currently-listening";
-import { ArrowRight, Book, Droplet, Film, MapPin } from "react-feather";
-import Spacer from "~/components/Spacer";
-import blrImg from "../../assets/blr.jpeg";
-import { getCurrentFitness } from "~/current-fitness";
-import countryIcon from "../../assets/in.svg";
-import FitnessRings from "~/components/common/FitnessRings";
-
-// CHANGE THESE AS YOU NEED
-const TZ = "Asia/Kolkata";
-const COUNTRY = "in";
-
-// const countryIcon = require(`../../assets/${COUNTRY}.svg`);
-// import countryIcon from `../../assets/${COUNTRY}.svg`
-
-export const loader = async () => {
-  const playingResponse = await getCurrentlyListening();
-  const fitnessResponse = await getCurrentFitness();
-  return {
-    playingResponse,
-    fitnessResponse,
-  };
-};
-
-const options = {
-  day: "numeric",
-  month: "long",
-  hour: "numeric",
-  minute: "numeric",
-  timeZone: TZ,
-};
 
 export default function Posts() {
-  const { playingResponse, fitnessResponse } = useLoaderData();
-  const date = new Intl.DateTimeFormat("en-US", options).format(new Date());
-  console.log("data", playingResponse, fitnessResponse);
   return (
-    <Layout>
+    <Layout hideIllustration={false}>
       <section className="px-8">
         <h2 className="my-8 block text-left md:my-0 ">About Me</h2>
         <div className="relative flex flex-col text-primary">
@@ -65,7 +29,7 @@ export default function Posts() {
           </span>
         </div>
       </section>
-      <section className="my-16 px-8">
+      {/* <section className="my-16 px-8">
         <h2 className="block">Right now</h2>
         <div className="my-8">
           <a href="https://en.wikipedia.org/wiki/Bangalore">
@@ -132,7 +96,7 @@ export default function Posts() {
             <span>Stranger Things • Season 4</span>
           </a>
         </div>
-      </section>
+      </section> */}
     </Layout>
   );
 }

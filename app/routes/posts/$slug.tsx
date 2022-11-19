@@ -25,32 +25,30 @@ export default function PostSlug() {
           ]}
         />
       </div>
-      <div className="flex flex-col items-center justify-center space-y-1 px-4 md:px-0">
-        <span className="text-center text-3xl md:my-0">{post.title}</span>
+      <div className="flex flex-col space-y-1 px-4 md:px-8 md:my-16">
+        <span className="text-3xl mb-2">{post.title}</span>
         <span className="font-bold">
           {post.date} • {post.readTime} min read
         </span>
       </div>
-      <div
-        className="my-4 rounded px-4 md:my-8 md:px-8"
-        style={{ height: 642 }}
-      >
-        <img src={post.coverImg} className="h-full w-full rounded" />
-      </div>
-      <div className="shadow-white relative rounded bg-main-bg px-4 md:px-8 flex">
-        <article className="blog-post flex-[1_1_700px]" dangerouslySetInnerHTML={{ __html: post.html }} />
-        <aside className="hidden lg:flex flex-[0_1000000_250px] justify-center sticky top-4 ml-16 max-h-screen">
-          <ul className="ml-4">
+      <div className="shadow-white rounded bg-main-bg px-4 md:px-8 flex my-8 md:my-16">
+        <article className="blog-post md:max-w-[745px]" dangerouslySetInnerHTML={{ __html: post.html }} />
+        {post.sections && (
+        <aside className="hidden md:ml-16 md:-mr-16 md:flex self-start sticky top-32">
+          <div>
             <h2 className="mb-4">Table of contents</h2>
-            {post.sections.map(section => (
-              <li className="mb-4" key={section}>{section}</li>
-            ))}
-          </ul>
-          <ProgressIndicator className="-mr-8" />
+            <ul>
+              {post.sections.map((section: string) => (
+                <li className="mb-4" key={section}>{section}</li>
+              ))}
+            </ul>
+          </div>
+        <ProgressIndicator className="-mr-16" />
         </aside>
-        <div className="lg:hidden">
-          <ProgressIndicator isMobile />
-        </div>
+        )}
+      </div>
+      <div className="lg:hidden">
+        <ProgressIndicator isMobile />
       </div>
     </Layout>
   );

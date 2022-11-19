@@ -9,7 +9,6 @@ export default function Header() {
         <nav className="flex justify-between">
           <Logo />
           <ul className="flex space-x-12">
-            <Link to="/posts">Posts</Link>
             <Link to="/about">About</Link>
             {/* <Link to="/snippets">Snippets</Link> */}
             <li>
