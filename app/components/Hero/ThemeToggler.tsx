@@ -7,7 +7,6 @@ const ThemeToggler = ({ isMobile = false }) => {
   const [theme, setTheme] = useTheme();
 
   const switchTheme = () => {
-    console.log("switching theme...", theme);
     setTheme((prevTheme) =>
       prevTheme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT
     );

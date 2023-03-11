@@ -12,12 +12,11 @@ export const loader = async () => {
 
 export default function Posts() {
   const posts = useLoaderData<Post[]>();
-  console.log("posts", posts);
   const featured = posts.filter((post) => post.featured);
   const regular = posts.filter((post) => !post.featured);
   return (
     <Layout>
-      <section className="px-8">
+      <section className="px-4 md:px-8">
         <h2 className="my-8 md:my-0">All Posts</h2>
         <div className="my-8 hidden md:block">
           {featured.map((post) => (

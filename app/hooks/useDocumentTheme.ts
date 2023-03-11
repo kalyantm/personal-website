@@ -7,7 +7,6 @@ const useDocumentTheme = () => {
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.type === "attributes") {
-          // console.log("setting theme...", mutation);
           setTheme(document.documentElement.dataset.theme);
         }
       });

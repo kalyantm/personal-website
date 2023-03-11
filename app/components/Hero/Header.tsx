@@ -10,7 +10,7 @@ export default function Header() {
           <Logo />
           <ul className="flex space-x-12">
             <Link to="/about">About</Link>
-            {/* <Link to="/snippets">Snippets</Link> */}
+            <Link to="/posts">Posts</Link>
             <li>
               <ThemeToggler />
             </li>

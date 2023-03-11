@@ -41,8 +41,6 @@ export async function getCurrentFitness() {
   }
 
   const fitnessStats = await fitnessResponse.json();
-  console.log("fit ness dats", fitnessStats);
-  //   const fitnessBucket = fitnessStats.bucket;
   return fitnessStats.bucket[0].dataset.reduce(
     (acc, item) => {
       if (item.dataSourceId.includes("calories.expended")) {

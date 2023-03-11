@@ -17,7 +17,6 @@ export default function NewsLetter() {
     }
   }, [fetcher]);
 
-  console.log("fetcher", fetcher);
   return (
     <div className="grid grid-cols-1 text-primary md:grid-cols-2">
       <div className="flex flex-col">

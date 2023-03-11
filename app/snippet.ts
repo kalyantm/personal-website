@@ -37,7 +37,6 @@ export async function getSnippets() {
     dir.map(async (filename) => {
       const file = await fs.readFile(path.join(snippetsPath, filename));
       const { attributes } = parseFrontMatter(file.toString());
-      console.log("files", file, attributes, filename);
       invariant(
         isValidSnippetAttributes(attributes),
         `${filename} has bad meta data!`

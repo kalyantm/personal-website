@@ -1,8 +1,7 @@
-import React from "react";
-import { ActionFunction, useLoaderData } from "remix";
-import AboutSummary from "~/components/About/Summary";
+import { useLoaderData } from "remix";
 import BlogSummary from "~/components/Blog/Summary";
 import Layout from "~/components/Layout";
+import Spacer from "~/components/Spacer";
 import { getPosts } from "~/post";
 
 export const loader = async () => {
@@ -11,21 +10,15 @@ export const loader = async () => {
 
 export default function Index() {
   const posts = useLoaderData();
-  const orderedPosts = React.useMemo(() => {
-    return [
-      posts.find((post) => post.featured),
-      ...posts.filter((post) => !post.featured),
-    ];
-  }, [posts]);
-  console.log("orderd", orderedPosts);
   return (
     <Layout hideIllustration={false}>
-      <div className="">
+      {/* <div className="">
           <AboutSummary />
         <hr className="my-16 mx-8 border border-primary opacity-10" />
-      </div>
-      <section className="px-8">
-        <BlogSummary posts={orderedPosts} />
+      </div> */}
+      <Spacer height={32} />
+      <section className="px-4 md:px-8">
+        <BlogSummary posts={posts} />
       </section>
     </Layout>
   );

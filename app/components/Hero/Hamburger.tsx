@@ -12,12 +12,11 @@ const NAV_LINKS = [
   { label: "Home", to: "/" },
   { label: "Posts", to: "/posts" },
   { label: "About", to: "/about" },
-  { label: "Snippets", to: "/snippets" },
+  // { label: "Snippets", to: "/snippets" },
 ];
 
 export default function Hamburger() {
   const [open, setOpen] = useState(false);
-  console.log("open", open);
   return (
     <>
       <HamburgerIcon isOpen={open} onClick={() => setOpen(!open)} />

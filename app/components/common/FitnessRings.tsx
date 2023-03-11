@@ -46,7 +46,6 @@ export default function FitnessRings({ move, exercise, heart, step }: Props) {
     return (step / STEP_MAX) * 100;
   }, [step]);
 
-  console.log("ex, move", exercisePercentage, movePercentage, heart, step);
   return (
     <motion.svg
       viewBox="0 0 24 24"

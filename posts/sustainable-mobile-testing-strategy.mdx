@@ -1,7 +1,7 @@
 ---
 title: Building a sustainable mobile testing strategy
-readTime: 10
-date: "21 May 2022"
+readTime: 15
+date: "6 March 2023"
 coverImg: "https://picsum.photos/1024"
 desc: "How I setup a testing strategy for the proton mobile application"
 featured: true
@@ -34,25 +34,81 @@ Is this trade-off worth it? Let's look at an example.
 
 We have a tasks feature in our app that lets sales reps create tasks, edit tasks and change task status. The following example captures a test suite for tasks creation:
 
-// Code to show test suite
-
 ```js 
-import a from 'a';
+describe('Tasks Screen', () => {
+  beforeEach(async () => {
+   await device.reloadReactNative();
+  });
 
-const newFunction = (arg: string[]) => {
-    return arg.slice(0,1).map(a => ({ a }))
-}
+  test('create new tasks', async () => {
+  await expect(element(by.id('Tasks'))).toBeVisible();
+  element(by.id('Tasks')).tap();
+   await waitFor(element(by.text('Overdue')))
+     .toBeVisible()
+     .withTimeout(3000);
+  // Create some tasks
+  element(by.label('fab')).tap();
+  await element(by.text('Task')).tap();
+  await element(by.id('Title')).tap();
+  element(by.id('Title')).typeText('TEST TASK 1');
+  element(by.id('Notes')).tap();
+  element(by.id('Notes')).typeText('This is the first test task');
+  element(by.id('Create')).tap();
+  await element(by.label('fab')).tap();
+  await element(by.text('Task')).tap();
+  await element(by.id('Title')).tap();
+  await element(by.id('Title')).typeText('TEST TASK 2');
+  element(by.id('Notes')).tap();
+  element(by.id('Notes')).typeText('This is the second test task');
+  element(by.id('Create')).tap();
+  // Swipe on the container to see the upcoming tasks
+  await waitFor(element(by.id('tasks-carousel')))
+    .toBeVisible()
+    .withTimeout(3000);
+ await element(by.id('tasks-carousel')).swipe('left');
+ await expect('TEST TASK 1').toBeVisible();
+ expect('TEST TASK 2').toBeVisible();
+});
 ```
 
 First, we have some initial code we run using the beforeEach function. We reload the app between test cases, so that each test runs in an isolated environment, and we don’t have any data or methods leaking dat between tests. Then, we use detox's intuitive helper functions to interact with various elements on the screen, like buttons and text inputs, and perform gestures like swipes. Finally, we assert that we can indeed see the two newly created tasks. We have similar test suites for task edits, changes to task status, and other task state mutations. You can see this in action at the end of the article in the attached video.
+
+<video width="100%" controls="controls">
+  <source src="https://storage.googleapis.com/engineering-blog-assets-production/e2e-test-tasks.mp4" />
+</video>
 
 ## CATCHING A BUG!
 
 The following example illustrates where the test suite really shines:
 
-// Code that shows bug
-
+```js
+test('overdue tasks bug', async () => {
+ await expect(element(by.id('Tasks'))).toBeVisible();
+ element(by.id('Tasks')).tap();
+ await waitFor(element(by.id('tasks-carousel')))
+   .toBeVisible()
+   .withTimeout(3000);
+ await element(by.id('tasks-carousel')).swipe('left');
+ await element(by.id('TEST TASK 2 Actions')).tap();
+ await element(by.text('Edit')).tap();
+ await element(by.id('date-picker')).tap();
+ await element(by.text('6')).tap();
+ await element(by.text('Confirm')).tap();
+ await waitFor(element(by.text('* Must choose a day in the future')))
+   .toBeVisible()
+   .withTimeout(1000);
+ await element(by.text('Update')).tap();
+ await waitFor(element(by.id('tasks-carousel')))
+   .toBeVisible()
+   .withTimeout(3000);
+ await element(by.id('tasks-carousel')).swipe('right');
+});
+```
 Here, we were able to edit (or create) a task, assign a date in the past, and the task lands in our overdue list, even though we were thrown an error message stating that we must choose a day in the future. Our test suite caught a bug! Impressive.
+
+<video width="100%" controls="controls">
+  <source src="https://storage.googleapis.com/engineering-blog-assets-production/e2e-test-tasks(bug).mp4" />
+</video>
 
 ## AND THE REST
 
@@ -61,11 +117,3 @@ The next step is to add these tests on our continuous integration system. Once w
 ## CONCLUSION
 
 Developing a testing strategy is hard. Some choices make it easier, such as our use of  static typing via Typescript. This adds a blanket of protection that  makes me comfortable putting off unit tests for now. Component level tests with the React Native testing library are definitely nice to have, but when you have a clean slate, I think end-to-end tests are the perfect place to start, despite some of the challenges. Because  the test suites interact with a feature exactly like how a real user of the app would, it naturally invites you to think about writing code for users and, not just to meet a specification sheet. And as we’ve seen here today, it doesn’t have to take moving heaven and earth to get started. Go forth and test!
-
-TESTING TASKS LINK:
-
-[https://1drv.ms/v/s!AvfBkaoe-RVm9Ry5qDtYuT38flF2?e=Vt2QYE](https://1drv.ms/v/s!AvfBkaoe-RVm9Ry5qDtYuT38flF2?e=Vt2QYE)
-
-TESTING TASKS (capturing BUG):
-
-[https://1drv.ms/v/s!AvfBkaoe-RVm9Rs8tq9PRjwS7TI7?e=s1TbmL](https://1drv.ms/v/s!AvfBkaoe-RVm9Rs8tq9PRjwS7TI7?e=s1TbmL)

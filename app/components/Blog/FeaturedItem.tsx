@@ -1,5 +1,5 @@
 import { Link } from "@remix-run/react";
-import { ArrowRightCircle, TrendingUp } from "react-feather";
+import { ArrowRightCircle} from "react-feather";
 
 interface Props {
   post: any;
@@ -9,12 +9,12 @@ export default function FeaturedItem({ post }: Props) {
   return (
     <Link to={post.slug}>
       <div className="bg-white hover:bg-gray-100 relative flex rounded text-primary shadow-lg outline-2 outline-offset-4 outline-accent hover:outline dark:bg-grey-500">
-        {post.featured && (
+        {/* {post.featured && (
           <span className="absolute top-2 -left-2 flex items-center space-x-2 rounded-lg bg-book-red p-1 text-xs font-bold uppercase text-primary">
             <TrendingUp size={16} />
             <span>Featured</span>
           </span>
-        )}
+        )} */}
         <div className="w-1/3">
           <img
             className="h-full rounded-l object-cover"

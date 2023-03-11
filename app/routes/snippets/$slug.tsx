@@ -11,7 +11,6 @@ export const loader: LoaderFunction = async ({ params }) => {
 
 export default function PostSlug() {
   const snippet = useLoaderData();
-  console.log("snippet", snippet);
   return (
     <Layout>
       <div className="space-y-1/2 flex flex-col items-center justify-center">

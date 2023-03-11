@@ -10,7 +10,6 @@ export const loader = async () => {
 
 export default function Snippets() {
   const snippets = useLoaderData<Snippet[]>();
-  console.log("snippets", snippets);
   return (
     <Layout>
       <section className="px-8">

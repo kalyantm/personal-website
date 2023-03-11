@@ -13,7 +13,7 @@ export const ProgressIndicator = ({ className = '', isMobile = false }: {classNa
   const mobileProgressClasses = isMobile ? 'bg-accent h-1 w-full' : 'rounded-lg bg-accent w-1 h-full'
   return (
     <>
-     <div className={`max-h-[400px] bg-grey-500 ${className} ${mobileWrapperClasses}`}>
+     <div className={`max-h-[400px]  bg-grey-500 ${className} ${mobileWrapperClasses}`}>
       <motion.div className={mobileProgressClasses} style={isMobile ? {scaleX: anim, transformOrigin: '0%'} : { scaleY: anim, transformOrigin: 'center top' }} />
      </div>
     </>

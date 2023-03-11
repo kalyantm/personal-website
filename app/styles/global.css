@@ -64,3 +64,20 @@ code {
   align-items: baseline;
   margin-bottom: 16px;
 }
+
+@media only screen and (max-width: 820px) {
+  pre {
+    margin: 16px -16px;
+    border-radius: 0;
+    overflow-x: auto;
+  }
+}
+
+.lazyload,
+.lazyloading {
+	opacity: 0;
+}
+.lazyloaded {
+	opacity: 1;
+	transition: opacity 300ms;
+}

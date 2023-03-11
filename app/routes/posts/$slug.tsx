@@ -14,7 +14,6 @@ export const loader: LoaderFunction = async ({ params }) => {
 
 export default function PostSlug() {
   const post = useLoaderData();
-  console.log("post", post);
   return (
     <Layout>
       <div className="my-8 px-4 md:hidden">
@@ -31,7 +30,7 @@ export default function PostSlug() {
           {post.date} • {post.readTime} min read
         </span>
       </div>
-      <div className="shadow-white rounded bg-main-bg px-4 md:px-8 flex my-8 md:my-16">
+      <div className="shadow-white rounded bg-main-bg px-4 md:px-8 md:flex my-8 md:my-16 overflow-x-hidden md:overflow-x-visible">
         <article className="blog-post md:max-w-[745px]" dangerouslySetInnerHTML={{ __html: post.html }} />
         {post.sections && (
         <aside className="hidden md:ml-16 md:-mr-16 md:flex self-start sticky top-32">
@@ -43,11 +42,11 @@ export default function PostSlug() {
               ))}
             </ul>
           </div>
-        <ProgressIndicator className="-mr-16" />
+            <ProgressIndicator className="-mr-16" />
         </aside>
         )}
       </div>
-      <div className="lg:hidden">
+      <div className="md:hidden">
         <ProgressIndicator isMobile />
       </div>
     </Layout>
