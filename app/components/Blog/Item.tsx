@@ -1,10 +1,17 @@
 import { Link } from "@remix-run/react";
-import { TrendingUp } from "react-feather";
 import Spacer from "../Spacer";
+import helloWorld from '~/assets/hello-world.jpeg';
+import testing from '~/assets/testing.svg';
+
+const IMAGE_MAP = {
+  helloWorld,
+  testing
+}
 
 interface Props {
   post: any;
 }
+
 
 const POST_LINK_PREFIX = `/posts`;
 export default function BlogItem({ post }: Props) {
@@ -16,7 +23,7 @@ export default function BlogItem({ post }: Props) {
       <div className="aspect-h-4 aspect-w-3 h-full rounded-lg bg-main-bg outline-2 outline-offset-4 outline-accent hover:outline">
         <img
           className="w-full h-auto rounded-lg object-cover object-center transition"
-          src={post.coverImg}
+          src={IMAGE_MAP[post.coverImg]}
           alt=""
           loading="lazy"
         />
