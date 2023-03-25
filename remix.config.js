@@ -1,14 +1,12 @@
-/**
- * @type {import('@remix-run/dev').AppConfig}
- */
-
+/** @type {import('@remix-run/dev').AppConfig} */
 module.exports = {
-  cacheDirectory: "./node_modules/.cache/remix",
-  ignoredRouteFiles: [".*", "**/*.css", "**/*.test.{js,jsx,ts,tsx}"],
-  serverDependenciesToBundle: [
-    /^rehype.*/,
-    /^remark.*/,
-    /^unified.*/,
-    "@sindresorhus/slugify",
-  ],
+  ignoredRouteFiles: ["**/.*"],
+  server:
+    process.env.NETLIFY || process.env.NETLIFY_LOCAL
+      ? "./server.js"
+      : undefined,
+  serverBuildPath: ".netlify/functions-internal/server.js",
+  // appDirectory: "app",
+  // assetsBuildDirectory: "public/build",
+  // publicPath: "/build/",
 };
