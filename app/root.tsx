@@ -16,7 +16,7 @@ import {
   ThemeProvider,
   useTheme,
 } from "~/utils/theme-provider";
-import tailwindStylesheetUrl from "./styles/tailwind.css";
+import tailwindStylesheetUrl from "./styles/tailwind-styles.css";
 import cssVariablesStylesheetUrl from "./styles/variables.css";
 import globalStylesheetUrl from "./styles/global.css";
 import codeLightTheme from './styles/light-theme.css';
