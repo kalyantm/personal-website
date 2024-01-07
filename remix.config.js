@@ -35,5 +35,6 @@ module.exports = {
     // 'hast-util-is-element',
     "is-plain-obj",
     "rehype-highlight",
+    "zwitch",
   ],
 };
