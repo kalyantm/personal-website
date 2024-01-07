@@ -3,8 +3,8 @@ import fs from "fs/promises";
 import parseFrontMatter from "front-matter";
 import invariant from "tiny-invariant";
 import { marked } from "marked";
-import rehypeHighlight from 'rehype-highlight';
-import {rehype} from 'rehype';
+import rehypeHighlight from "rehype-highlight";
+import { rehype } from "rehype";
 
 export type Post = {
   slug: string;
@@ -28,7 +28,7 @@ export type PostMarkdownAttributes = {
 };
 
 // IMP: Relative to server output, not source!
-const postsPath = path.join(__dirname, "..", "posts");
+const postsPath = path.join(__dirname, "../..", "posts");
 
 function isValidPostAttributes(
   attributes: any
@@ -54,7 +54,7 @@ export async function getPosts() {
         coverImg: attributes.coverImg,
         featured: !!attributes.featured,
         date: attributes.date,
-        sections: attributes.sections
+        sections: attributes.sections,
       };
     })
   );
@@ -70,9 +70,9 @@ export async function getPost(slug: string) {
   );
 
   const html = await rehype()
-  .data('settings', {fragment: true})
-  .use(rehypeHighlight)
-  .process(marked(body))
+    .data("settings", { fragment: true })
+    .use(rehypeHighlight)
+    .process(marked(body));
 
   return {
     slug,
@@ -83,6 +83,6 @@ export async function getPost(slug: string) {
     coverImg: attributes.coverImg,
     featured: !!attributes.featured,
     desc: attributes.desc,
-    sections: attributes.sections
+    sections: attributes.sections,
   };
 }
