@@ -1,4 +1,4 @@
-import { useLoaderData } from "remix";
+import { useLoaderData } from "@remix-run/react";
 import { getPosts } from "~/post";
 import type { Post } from "~/post";
 import FeaturedItem from "~/components/Blog/FeaturedItem";

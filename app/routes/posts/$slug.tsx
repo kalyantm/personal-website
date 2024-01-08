@@ -1,11 +1,11 @@
-import { json, useLoaderData } from "remix";
-import type { LoaderFunction } from "remix";
+import { useLoaderData } from "@remix-run/react";
+import {json} from "@remix-run/node"
+import type { LoaderFunction } from "@remix-run/node";
 import invariant from "tiny-invariant";
 import { getPost } from "~/post";
 import Layout from "~/components/Layout";
 import Breadcrumbs from "~/components/Breadcrumbs";
 import { ProgressIndicator } from "~/components/common/ScrollIndicator";
-import Spacer from "~/components/Spacer";
 
 export const loader: LoaderFunction = async ({ params }) => {
   invariant(params.slug, "expected params.slug");

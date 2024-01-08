@@ -1,4 +1,4 @@
-import { ActionFunction } from "remix";
+import type { ActionFunction } from "@remix-run/react";
 
 const CONVERTKIT_API_SECRET = "GMao5aQ9TwdU9vTsPhPFSQ";
 const FORM_ID = "3307413";

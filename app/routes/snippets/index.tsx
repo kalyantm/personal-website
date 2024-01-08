@@ -1,4 +1,4 @@
-import { useLoaderData } from "remix";
+import { useLoaderData } from "@remix-run/react";
 import Layout from "~/components/Layout";
 import { getSnippets } from "~/snippet";
 import type { Snippet } from "~/snippet";

@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import type { Dispatch, ReactNode, SetStateAction } from "react";
-import { useFetcher } from "remix";
+import { useFetcher } from "@remix-run/react";
 
 export const prefersDarkMQ = "(prefers-color-scheme: dark)";
 
@@ -26,7 +26,13 @@ const clientThemeCode = `
 `;
 
 function NonFlashOfWrongThemeEls({ ssrTheme }: { ssrTheme: boolean }) {
-  return <>{ssrTheme ? null : <script dangerouslySetInnerHTML={{ __html: clientThemeCode }} />}</>;
+  return (
+    <>
+      {ssrTheme ? null : (
+        <script dangerouslySetInnerHTML={{ __html: clientThemeCode }} />
+      )}
+    </>
+  );
 }
 
 enum Theme {
@@ -38,7 +44,13 @@ type ThemeContextType = [Theme | null, Dispatch<SetStateAction<Theme | null>>];
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-function ThemeProvider({ children, specifiedTheme }: { children: ReactNode, specifiedTheme: Theme | null }) {
+function ThemeProvider({
+  children,
+  specifiedTheme,
+}: {
+  children: ReactNode;
+  specifiedTheme: Theme | null;
+}) {
   const [theme, setTheme] = useState<Theme | null>(() => {
     if (specifiedTheme) {
       if (themes.includes(specifiedTheme)) {
@@ -68,7 +80,10 @@ function ThemeProvider({ children, specifiedTheme }: { children: ReactNode, spec
       return;
     }
 
-    persistThemeRef.current.submit({ theme }, { action: 'action/set-theme', method: 'post' });
+    persistThemeRef.current.submit(
+      { theme },
+      { action: "action/set-theme", method: "post" }
+    );
   }, [theme]);
 
   return (
@@ -89,7 +104,7 @@ function useTheme() {
 const themes: Array<Theme> = Object.values(Theme);
 
 function isTheme(value: unknown): value is Theme {
-  return typeof value === 'string' && themes.includes(value as Theme);
+  return typeof value === "string" && themes.includes(value as Theme);
 }
 
 export { isTheme, NonFlashOfWrongThemeEls, Theme, ThemeProvider, useTheme };

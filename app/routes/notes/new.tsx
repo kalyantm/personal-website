@@ -1,6 +1,7 @@
 import * as React from "react";
-import { Form, json, redirect, useActionData } from "remix";
-import type { ActionFunction } from "remix";
+import { json, redirect } from "@remix-run/node";
+import { Form, useActionData } from "@remix-run/react";
+import type { ActionFunction } from "@remix-run/node";
 import Alert from "@reach/alert";
 
 import { createNote } from "~/models/note.server";
@@ -68,7 +69,7 @@ export default function NewNotePage() {
           <input
             ref={titleRef}
             name="title"
-            className="flex-1 rounded-md border-2 border-blue-500 px-3 text-lg leading-loose"
+            className="border-blue-500 flex-1 rounded-md border-2 px-3 text-lg leading-loose"
             aria-invalid={actionData?.errors?.title ? true : undefined}
             aria-errormessage={
               actionData?.errors?.title ? "title-error" : undefined
@@ -76,7 +77,7 @@ export default function NewNotePage() {
           />
         </label>
         {actionData?.errors?.title && (
-          <Alert className="pt-1 text-red-700" id="title=error">
+          <Alert className="text-red-700 pt-1" id="title=error">
             {actionData.errors.title}
           </Alert>
         )}
@@ -89,7 +90,7 @@ export default function NewNotePage() {
             ref={bodyRef}
             name="body"
             rows={8}
-            className="w-full flex-1 rounded-md border-2 border-blue-500 py-2 px-3 text-lg leading-6"
+            className="border-blue-500 w-full flex-1 rounded-md border-2 px-3 py-2 text-lg leading-6"
             aria-invalid={actionData?.errors?.body ? true : undefined}
             aria-errormessage={
               actionData?.errors?.body ? "body-error" : undefined
@@ -97,7 +98,7 @@ export default function NewNotePage() {
           />
         </label>
         {actionData?.errors?.body && (
-          <Alert className="pt-1 text-red-700" id="body=error">
+          <Alert className="text-red-700 pt-1" id="body=error">
             {actionData.errors.body}
           </Alert>
         )}
@@ -106,7 +107,7 @@ export default function NewNotePage() {
       <div className="text-right">
         <button
           type="submit"
-          className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
+          className="bg-blue-500 text-white hover:bg-blue-600 focus:bg-blue-400 rounded px-4 py-2"
         >
           Save
         </button>

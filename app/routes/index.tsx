@@ -1,4 +1,4 @@
-import { useLoaderData } from "remix";
+import { useLoaderData } from "@remix-run/react";
 import BlogSummary from "~/components/Blog/Summary";
 import Layout from "~/components/Layout";
 import Spacer from "~/components/Spacer";

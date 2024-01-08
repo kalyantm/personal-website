@@ -1,5 +1,5 @@
 import { ArrowRightCircle } from "react-feather";
-import { Link } from "remix";
+import { Link } from "@remix-run/react";
 import BlogItem from "./Item";
 
 interface Props {
@@ -18,7 +18,7 @@ export default function BlogSummary({ posts }: Props) {
       </div>
       <div className="grid grid-cols-1 gap-16 md:grid-cols-2 md:gap-4">
         {posts.map((post, index) => (
-           <BlogItem post={post} key={index} />
+          <BlogItem post={post} key={index} />
         ))}
       </div>
       {/* <Link

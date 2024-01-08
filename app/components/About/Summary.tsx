@@ -1,5 +1,5 @@
 import { ArrowRightCircle } from "react-feather";
-import { Link } from "remix";
+import { Link } from "@remix-run/react";
 
 export default function AboutSummary() {
   return (

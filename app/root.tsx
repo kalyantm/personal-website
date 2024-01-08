@@ -1,15 +1,6 @@
 import clsx from "clsx";
-import {
-  json,
-  Links,
-  LiveReload,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-  useLoaderData,
-} from "remix";
-import type { LinksFunction, MetaFunction, LoaderFunction } from "remix";
+import { type LinksFunction, type LoaderFunction, type MetaFunction, json } from "@remix-run/node";
+import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from "@remix-run/react";
 import type {Theme} from "~/utils/theme-provider";
 import {
   NonFlashOfWrongThemeEls,

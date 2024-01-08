@@ -1,4 +1,5 @@
-import { LinkProps, NavLink } from "remix";
+import type { LinkProps } from "@remix-run/react";
+import { NavLink } from "@remix-run/react";
 
 export default function Link({ to, children, ...rest }: LinkProps) {
   const activeStyle = {

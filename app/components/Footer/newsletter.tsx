@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useFetcher } from "remix";
+import { useFetcher } from "@remix-run/react";
 import MrCoo from "~/illustration/pigeon";
 import Input from "../common/Input";
 import Confetti from "react-confetti";
