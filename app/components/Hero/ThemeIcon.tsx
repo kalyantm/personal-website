@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Theme } from "~/utils/theme-provider";
+import type { Theme } from "~/utils/theme-provider";
 
 interface Props {
   theme: Theme | null;

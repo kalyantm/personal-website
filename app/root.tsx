@@ -1,17 +1,31 @@
 import clsx from "clsx";
-import { type LinksFunction, type LoaderFunction, type MetaFunction, json } from "@remix-run/node";
-import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from "@remix-run/react";
-import type {Theme} from "~/utils/theme-provider";
 import {
-  NonFlashOfWrongThemeEls,
+  type LinksFunction,
+  type LoaderFunction,
+  type MetaFunction,
+  json,
+} from "@remix-run/node";
+import {
+  Links,
+  LiveReload,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+  useLoaderData,
+} from "@remix-run/react";
+import type { Theme } from "~/utils/theme-provider";
+import {
+  ThemeBody,
+  ThemeHead,
   ThemeProvider,
   useTheme,
 } from "~/utils/theme-provider";
 import tailwindStylesheetUrl from "./styles/tailwind-styles.css";
 import cssVariablesStylesheetUrl from "./styles/variables.css";
 import globalStylesheetUrl from "./styles/global.css";
-import codeLightTheme from './styles/light-theme.css';
-import codeDarkTheme from './styles/dark-theme.css';
+import codeLightTheme from "./styles/light-theme.css";
+import codeDarkTheme from "./styles/dark-theme.css";
 import { getUser } from "./session.server";
 import { getThemeSession } from "./utils/theme.server";
 
@@ -38,24 +52,25 @@ export const loader: LoaderFunction = async ({ request }) => {
   const themeSession = await getThemeSession(request);
   return json<LoaderData>({
     user: await getUser(request),
-    theme: themeSession.getTheme()
+    theme: themeSession.getTheme(),
   });
 };
 
 function App() {
   const [theme] = useTheme();
   const data = useLoaderData<LoaderData>();
-  const codeTheme = theme === 'dark' ? codeDarkTheme : codeLightTheme;
+  const codeTheme = theme === "dark" ? codeDarkTheme : codeLightTheme;
   return (
     <html lang="en" className={clsx("h-full", theme)}>
       <head>
         <Meta />
         <Links />
-        <NonFlashOfWrongThemeEls ssrTheme={Boolean(data.theme)} />
+        <ThemeHead ssrTheme={Boolean(data.theme)} />
         <link rel="stylesheet" href={codeTheme} />
       </head>
       <body className="min-h-full">
         <Outlet />
+        <ThemeBody ssrTheme={Boolean(data.theme)} />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
@@ -65,7 +80,7 @@ function App() {
 }
 
 export default function AppWithProviders() {
-  const data = useLoaderData<LoaderData>(); 
+  const data = useLoaderData<LoaderData>();
   return (
     <ThemeProvider specifiedTheme={data.theme}>
       <App />

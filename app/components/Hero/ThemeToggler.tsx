@@ -5,7 +5,7 @@ import ThemeIcon from "./ThemeIcon";
 
 const ThemeToggler = ({ isMobile = false }) => {
   const [theme, setTheme] = useTheme();
-
+  console.log("thme", theme);
   const switchTheme = () => {
     setTheme((prevTheme) =>
       prevTheme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT
