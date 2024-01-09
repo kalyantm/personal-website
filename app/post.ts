@@ -36,22 +36,20 @@ function isValidPostAttributes(
   return attributes?.title;
 }
 
+const postsPath = path.join(__dirname, "../../..", "posts");
+
 export async function getPosts() {
-  const dir = await fs.readdir(`${__dirname}/../../app/posts`, {
-    withFileTypes: true,
-  });
+  const dir = await fs.readdir(postsPath);
   return Promise.all(
     dir.map(async (filename) => {
-      const file = await fs.readFile(
-        path.join(`${__dirname}/../../app/posts`, filename.name)
-      );
+      const file = await fs.readFile(path.join(postsPath, filename));
       const { attributes } = parseFrontMatter(file.toString());
       invariant(
         isValidPostAttributes(attributes),
         `${filename} has bad meta data!`
       );
       return {
-        slug: filename.name.replace(/\.mdx$/, ""),
+        slug: filename.replace(/\.mdx$/, ""),
         title: attributes.title,
         desc: attributes.desc,
         readTime: attributes.readTime,
@@ -65,7 +63,7 @@ export async function getPosts() {
 }
 
 export async function getPost(slug: string) {
-  const filepath = path.join(`${__dirname}/../../app/posts`, slug + ".mdx");
+  const filepath = path.join(postsPath, slug + ".mdx");
   const file = await fs.readFile(filepath);
   const { attributes, body } = parseFrontMatter(file.toString());
   invariant(
