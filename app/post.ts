@@ -1,7 +1,7 @@
 import path from "path";
 import fs from "fs/promises";
 import parseFrontMatter from "front-matter";
-import invariant from "tiny-invariant";
+// import invariant from "tiny-invariant";
 import { marked } from "marked";
 import rehypeHighlight from "rehype-highlight";
 import { rehype } from "rehype";
@@ -30,26 +30,28 @@ export type PostMarkdownAttributes = {
 // IMP: Relative to server output, not source!
 // const postsPath = path.join(__dirname, "..", "posts");
 
-function isValidPostAttributes(
-  attributes: any
-): attributes is PostMarkdownAttributes {
-  return attributes?.title;
-}
+// function isValidPostAttributes(
+//   attributes: any
+// ): attributes is PostMarkdownAttributes {
+//   return attributes?.title;
+// }
 
-const postsPath = path.join(__dirname, "../../..", "posts");
+// const postsPath = path.join(__dirname, "../..", "posts");
 
 export async function getPosts() {
-  const dir = await fs.readdir(postsPath);
-  return Promise.all(
-    dir.map(async (filename) => {
-      const file = await fs.readFile(path.join(postsPath, filename));
-      const { attributes } = parseFrontMatter(file.toString());
-      invariant(
-        isValidPostAttributes(attributes),
-        `${filename} has bad meta data!`
+  const postsPath = await fs.readdir(`${__dirname}/../../app/posts`, {
+    withFileTypes: true,
+  });
+  const posts = await Promise.all(
+    postsPath.map(async (dirent) => {
+      const file = await fs.readFile(
+        path.join(`${__dirname}/../../app/posts`, dirent.name)
+      );
+      const { attributes }: { attributes: any } = parseFrontMatter(
+        file.toString()
       );
       return {
-        slug: filename.replace(/\.mdx$/, ""),
+        slug: dirent.name.replace(/\.mdx/, ""),
         title: attributes.title,
         desc: attributes.desc,
         readTime: attributes.readTime,
@@ -60,16 +62,23 @@ export async function getPosts() {
       };
     })
   );
+  return posts;
 }
 
 export async function getPost(slug: string) {
-  const filepath = path.join(postsPath, slug + ".mdx");
-  const file = await fs.readFile(filepath);
-  const { attributes, body } = parseFrontMatter(file.toString());
-  invariant(
-    isValidPostAttributes(attributes),
-    `Post ${filepath} is missing attributes`
+  // const filepath = path.join(postsPath, slug + ".mdx");
+  const file = await fs.readdir(
+    path.join(`${__dirname}/../../app/posts`, slug + ".mdx")
   );
+  // const file = await fs.readFile(``)
+  // const file = await fs.readFile(filepath);
+  const { attributes, body }: { attributes: any; body: any } = parseFrontMatter(
+    file.toString()
+  );
+  // invariant(
+  //   isValidPostAttributes(attributes),
+  //   `Post ${filepath} is missing attributes`
+  // );
 
   const html = await rehype()
     .data("settings", { fragment: true })
