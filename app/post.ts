@@ -67,7 +67,7 @@ export async function getPosts() {
 
 export async function getPost(slug: string) {
   const postPath = `${__dirname}/../../app/posts/${slug}.mdx`;
-  const file = await fs.readdir(path.join(postPath));
+  const file = await fs.readFile(postPath, "utf8");
   const { attributes, body }: { attributes: any; body: any } = parseFrontMatter(
     file.toString()
   );
