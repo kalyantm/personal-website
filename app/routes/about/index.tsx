@@ -1,5 +1,5 @@
 import Layout from "~/components/Layout";
-import pp from '~/assets/pp_250x250.jpeg';
+import pp from "~/assets/pp-final.png";
 
 export default function Posts() {
   return (
@@ -7,31 +7,50 @@ export default function Posts() {
       <section className="px-8">
         <h2 className="my-8 block text-left md:my-0 ">About Me</h2>
         <div className="grid grid-cols-1 gap-16 md:grid-cols-3 md:gap-8">
-          <div className="relative flex flex-col text-primary col-span-2">
+          <div className="relative col-span-2 flex flex-col text-primary">
             <span className="mt-8 text-base">
-            My first real experience with software engineering was right out
-            college at a startup where I worked as a junior web engineer, and I
-            got hooked. I've been an avid follower of the web ecosystem,
-            including React, Node, Typescript. I am also a big fan of functional
-            programming, which is how I write JS. I am currently building
-            <a href="https://www.proton.ai" className="font-bold text-accent" target="_blank" rel="noreferrer"> proton.ai</a>, working on improving our react native application.
+              My first real experience with software engineering was right out
+              college at a startup where I worked as a junior web engineer, and
+              I got hooked. I've been an avid follower of the web ecosystem,
+              including React, Node, Typescript. I am also a big fan of
+              functional programming, which is how I write JS. I am currently
+              building
+              <a
+                href="https://www.proton.ai"
+                className="font-bold text-accent"
+                target="_blank"
+                rel="noreferrer"
+              >
+                {" "}
+                proton.ai
+              </a>
+              , working on improving our react native application.
             </span>
             <span className="mt-8 text-base">
-            I am a big fan of remote work. In fact, I've worked in a remote
-            setting long before the pandemic. I love that I get to structure
-            work around my life, and not the other way around. But my favorite
-            thing about working remote has to be the ability to work from
-            anywhere. I love to travel and am in the constant pursuit of the
-            next incredible view
+              I am a big fan of remote work. In fact, I've worked in a remote
+              setting long before the pandemic. I love that I get to structure
+              work around my life, and not the other way around. But my favorite
+              thing about working remote has to be the ability to work from
+              anywhere. I love to travel and am in the constant pursuit of the
+              next incredible view
             </span>
             <span className="mt-8 text-base">
-            When I'm not working, I'm usually tuned into a football game
-            <a href="https://twitter.com/ChelseaFC" className="font-bold text-accent" target="_blank" rel="noreferrer"> (#ktbffh)</a>, travelling around or just looking at random things on the
-            internet.
+              When I'm not working, I'm usually tuned into a football game
+              <a
+                href="https://twitter.com/ChelseaFC"
+                className="font-bold text-accent"
+                target="_blank"
+                rel="noreferrer"
+              >
+                {" "}
+                (#ktbffh)
+              </a>
+              , travelling around or just looking at random things on the
+              internet.
             </span>
           </div>
-          <div className="flex justify-center items-center col-span-1">
-            <img src={pp} className="rounded-md max-w-[300px] max-h-[226px] h-full w-full" alt="profile pic" />
+          <div className="col-span-1 flex items-center justify-center">
+            <img src={pp} className="rounded-lg" alt="profile pic" />
           </div>
         </div>
       </section>

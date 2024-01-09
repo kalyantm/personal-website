@@ -1,9 +1,16 @@
 import { Link } from "@remix-run/react";
-import { ArrowRightCircle} from "react-feather";
+import { ArrowRightCircle } from "react-feather";
+import helloWorld from "~/assets/hello-world.jpeg";
+import testing from "~/assets/testing.svg";
 
 interface Props {
   post: any;
 }
+
+const IMAGE_MAP = {
+  helloWorld,
+  testing,
+};
 
 export default function FeaturedItem({ post }: Props) {
   return (
@@ -18,10 +25,10 @@ export default function FeaturedItem({ post }: Props) {
         <div className="w-1/3">
           <img
             className="h-full rounded-l object-cover"
-            src={post.coverImg}
-            alt=""
+            alt={`Go to Post: ${post.title}`}
             width={350}
             height={350}
+            src={IMAGE_MAP[post.coverImg]}
           />
         </div>
         <div className="align-start flex w-2/3 flex-col justify-between p-4">

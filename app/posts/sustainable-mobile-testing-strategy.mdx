@@ -1,11 +1,20 @@
 ---
 title: Building a sustainable mobile testing strategy
 readTime: 15
-date: "6 March 2023"
+date: "Jan 1, 2024"
 coverImg: "testing"
 desc: "How I setup a testing strategy for the proton mobile application"
 featured: true
-sections: ['Luck is in the air', 'Testing Stack', 'Write Tests. Not too many. Mostly Integration', 'E2E test Suite for tasks', 'Catching a bug!', 'And the rest', 'Conclusion']
+sections:
+  [
+    "Luck is in the air",
+    "Testing Stack",
+    "Write Tests. Not too many. Mostly Integration",
+    "E2E test Suite for tasks",
+    "Catching a bug!",
+    "And the rest",
+    "Conclusion",
+  ]
 ---
 
 Every engineer I've worked with has had strong opinions about testing. And regardless of their take, there’s one recurring theme: setting up the infrastructure around these tests is hard.
@@ -34,7 +43,7 @@ Is this trade-off worth it? Let's look at an example.
 
 We have a tasks feature in our app that lets sales reps create tasks, edit tasks and change task status. The following example captures a test suite for tasks creation:
 
-```js 
+```js
 describe('Tasks Screen', () => {
   beforeEach(async () => {
    await device.reloadReactNative();
@@ -82,28 +91,29 @@ First, we have some initial code we run using the beforeEach function. We reload
 The following example illustrates where the test suite really shines:
 
 ```js
-test('overdue tasks bug', async () => {
- await expect(element(by.id('Tasks'))).toBeVisible();
- element(by.id('Tasks')).tap();
- await waitFor(element(by.id('tasks-carousel')))
-   .toBeVisible()
-   .withTimeout(3000);
- await element(by.id('tasks-carousel')).swipe('left');
- await element(by.id('TEST TASK 2 Actions')).tap();
- await element(by.text('Edit')).tap();
- await element(by.id('date-picker')).tap();
- await element(by.text('6')).tap();
- await element(by.text('Confirm')).tap();
- await waitFor(element(by.text('* Must choose a day in the future')))
-   .toBeVisible()
-   .withTimeout(1000);
- await element(by.text('Update')).tap();
- await waitFor(element(by.id('tasks-carousel')))
-   .toBeVisible()
-   .withTimeout(3000);
- await element(by.id('tasks-carousel')).swipe('right');
+test("overdue tasks bug", async () => {
+  await expect(element(by.id("Tasks"))).toBeVisible();
+  element(by.id("Tasks")).tap();
+  await waitFor(element(by.id("tasks-carousel")))
+    .toBeVisible()
+    .withTimeout(3000);
+  await element(by.id("tasks-carousel")).swipe("left");
+  await element(by.id("TEST TASK 2 Actions")).tap();
+  await element(by.text("Edit")).tap();
+  await element(by.id("date-picker")).tap();
+  await element(by.text("6")).tap();
+  await element(by.text("Confirm")).tap();
+  await waitFor(element(by.text("* Must choose a day in the future")))
+    .toBeVisible()
+    .withTimeout(1000);
+  await element(by.text("Update")).tap();
+  await waitFor(element(by.id("tasks-carousel")))
+    .toBeVisible()
+    .withTimeout(3000);
+  await element(by.id("tasks-carousel")).swipe("right");
 });
 ```
+
 Here, we were able to edit (or create) a task, assign a date in the past, and the task lands in our overdue list, even though we were thrown an error message stating that we must choose a day in the future. Our test suite caught a bug! Impressive.
 
 <video width="100%" controls="controls">
