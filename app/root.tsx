@@ -28,6 +28,7 @@ import codeLightTheme from "./styles/light-theme.css";
 import codeDarkTheme from "./styles/dark-theme.css";
 import { getUser } from "./session.server";
 import { getThemeSession } from "./utils/theme.server";
+import { Analytics } from "@vercel/analytics/react";
 
 export const links: LinksFunction = () => {
   return [
@@ -74,6 +75,7 @@ function App() {
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
+        <Analytics />
       </body>
     </html>
   );
