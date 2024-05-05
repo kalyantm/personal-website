@@ -62,7 +62,7 @@ export async function getPosts() {
       };
     })
   );
-  return posts;
+  return posts
 }
 
 export async function getPost(slug: string) {

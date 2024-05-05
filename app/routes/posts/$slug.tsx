@@ -1,19 +1,23 @@
-import { useLoaderData } from "@remix-run/react";
+import React from 'react';
+import { useLoaderData, useLocation } from "@remix-run/react";
 import {json} from "@remix-run/node"
 import type { LoaderFunction } from "@remix-run/node";
 import invariant from "tiny-invariant";
 import { getPost } from "~/post";
 import Layout from "~/components/Layout";
 import Breadcrumbs from "~/components/Breadcrumbs";
-import { ProgressIndicator } from "~/components/common/ScrollIndicator";
 
 export const loader: LoaderFunction = async ({ params }) => {
   invariant(params.slug, "expected params.slug");
   return json(await getPost(params.slug));
 };
 
+const getSection = (section: string) => section.split(' ').map(el => el.toLowerCase()).join('-')
+
 export default function PostSlug() {
   const post = useLoaderData();
+  const hash = useLocation().hash;
+  console.log('hash', hash)
   return (
     <Layout>
       <div className="my-8 px-4 md:hidden">
@@ -27,7 +31,7 @@ export default function PostSlug() {
       <div className="flex flex-col space-y-1 px-4 md:px-8 md:my-16">
         <span className="text-3xl mb-2">{post.title}</span>
         <span className="font-bold">
-          {post.date} • {post.readTime} min read
+          {post.date} 
         </span>
       </div>
       <div className="shadow-white rounded bg-main-bg px-4 md:px-8 md:flex my-8 md:my-16 overflow-x-hidden md:overflow-x-visible">
@@ -38,16 +42,16 @@ export default function PostSlug() {
             <h2 className="mb-4">Table of contents</h2>
             <ul>
               {post.sections.map((section: string) => (
-                <li className="mb-4" key={section}>{section}</li>
+                <li className="mb-4" key={section}>
+                  <a href={`#${getSection(section)}`} className={`text-left ${hash === `#${getSection(section)}` ? 'text-accent' : 'text-primary' }`}>
+                    {section}
+                  </a>
+                </li>
               ))}
             </ul>
           </div>
-            <ProgressIndicator className="-mr-16" />
         </aside>
         )}
-      </div>
-      <div className="md:hidden">
-        <ProgressIndicator isMobile />
       </div>
     </Layout>
   );

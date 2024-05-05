@@ -2,10 +2,12 @@ import { Link } from "@remix-run/react";
 import Spacer from "../Spacer";
 import helloWorld from "~/assets/hello-world.jpeg";
 import testing from "~/assets/testing.svg";
+import expandable from '~/assets/expandable.svg';
 
 const IMAGE_MAP = {
   helloWorld,
   testing,
+  expandable
 };
 
 interface Props {
@@ -29,7 +31,7 @@ export default function BlogItem({ post }: Props) {
         <Spacer height={16} />
         <div className="flex flex-col space-y-2">
           <span className="text-sm font-bold">
-            {post.date} • {post.readTime} min read
+            {post.date} 
           </span>
           <span className="text-xl font-medium">{post.title}</span>
         </div>

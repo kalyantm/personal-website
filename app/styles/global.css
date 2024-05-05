@@ -1,6 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@300;400;600&display=swap");
 
 /* @import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300;8..144,400;8..144,600&display=swap"); */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--color-hill-stop-6);
   font-family: "Roboto Flex", sans-serif;

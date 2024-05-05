@@ -40,7 +40,7 @@ export default function FeaturedItem({ post }: Props) {
               {post.desc}
             </p>
             <span className="text-sm font-bold">
-              {post.date} • {post.readTime} min read
+              {post.date}
             </span>
           </div>
           <button className="flex items-center space-x-2">

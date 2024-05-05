@@ -1,0 +1,150 @@
+---
+title: An expanding list component using the Intersection Observer API
+date: "Apr 19, 2024"
+coverImg: "expandable"
+desc: "Using the intersection observer API to build an expandable list component with React"
+featured: true
+sections:
+ [
+   "Approaching the problem",
+   "Intersection Observer API",
+   "Building the expandable list component",
+   "Wrap up",
+ ]
+--- 
+
+I recently came upon an interesting problem at work: we had to build a component that determines how many elements would fit in a container and hide the rest of the elements behind a `Show More` button. On clicking this button, we will show all the elements.
+For example, if the container can fit 10 elements and we had to show 12 elements, we would render the 10 elements and a `+2` button, which when clicked, would display all 12 elements (in a wrapping container)
+
+## Approaching the Problem
+
+This component can be built in different ways. One way is to use Javascript (and Math!). Once mounted, we can measure the size of the container and the size of each element and do some math to figure out how many elements would fit in the container. Then, we display the elements that fit and show a `Show More` button, where `n` is equal to the `total elements - elements fit in the container`.
+
+That would work, but there is a more elegant API that the browser provides for our problem - the intersection observer API!
+
+## Intersection Observer API
+
+The Intersection Observer API is a popular API that I've used in the past to lazily load images on slow networks (back in the day, when we did not have the luxury of just adding a `lazy` prop to `<img />`!)
+
+The idea behind the API is very simple - it exposes a callback that will be invoked whenever an element enters or exits an intersection with another element, or the viewport itself! 
+
+Using the API is fairly straightforward. We first specify the `options`, which is an object consisting of:
+
+* `root`, which is used to check the visibility of the target (will default to the document, if not specified)
+* `threshold`, which indicates at what percentage of the target's visibility the callback should be invoked
+* `rootMargin`, which applies a margin around the root element before computing the intersections
+
+With these defined, we can define the `observer`:
+
+```js
+  let observer = new IntersectionObserver(
+    callbackToBeInvoked, 
+    {root, threshold, rootMargin}
+  )
+```
+
+## Building the Expandable List Component
+
+The intersection API is perfect for our use case - we can define a `root` which is the parent container that houses our elements, and we can observe each of the elements inside the component. If an element intersects with the bounds of the parent component (i.e. if it does not fully fit in the container), this means that the element overflows! We can keep track of the indices of the elements that do not fit in the container and hide them behind a `Show More` button!
+
+First, we need some state to keep track of the visible items. Initially, we set it to be all the items that are passed in via the `items` prop. Since we are interested in only the item indices and their unique ids, we initialize them as follows:
+
+```js
+  const [visibleItemIds, setVisibleItemIds] = 
+    React.useState(() => props.items.map((, index) => `item-${index}`))
+```
+
+We can also define a `ref` that is used to initialize and invoke the intersection observer:
+
+```js 
+  // We will initialise the observer here later
+  const observerRef = React.useRef(null); 
+```
+
+The rendering logic is fairly straightforward: We define a container that houses all the (visible) elements and a `Show More` button:
+
+```js
+return (
+  <div style={{ display: 'flex', alignItems: 'center'}}>
+    <div 
+      id="items-container" 
+      style={{
+        display: 'flex',
+        maxWidth: '90%', 
+        overflowX: 'hidden' 
+    }}>
+      {items.slice(0, visibleItemIds.length).map((item, index) => (
+        <div id={`item-${index}`} key={`item-${index}`}>
+          {renderItem(item)}
+        </div>
+      ))}
+    </div>
+    {items.length !== visibleItemIds.length && (
+      <button onClick={handleExpansion}>
+        +{items.length - visibleItemIds.length}
+      </button>
+      )}
+  </div>
+)
+```
+The bulk of the logic exists in two functions: `renderItems` and `handleExpansion`. The former invokes the intersection API and checks for the overflowing elements, while the latter handles the click on the `Show More` button to ensure all items are visible:
+
+```js 
+const renderItems = () => {
+  const itemContainer = document.getElementById(`${id}-items-container`);
+  // If the scroll width exceeds the client width => the items overflow!
+  // We need to compute the elements to fit only if it overflows
+  // Else they all fit in the container and we don't need to do anything
+  if (itemContainer && 
+      itemContainer?.scrollWidth >= itemContainer?.clientWidth) {
+    observerRef.current = new IntersectionObserver((entries) => {
+      setVisibleItemIds(
+        () => entries
+          .filter((entry) => entry.isIntersecting)
+          .map((entry) => entry.target.id)
+      );
+    }, {
+      root: itemContainer,
+      rootMargin: "0px",
+      threshold: 1.0,
+    });
+
+    items.forEach((_, index) => {
+      const target = document.getElementById(`${id}-item-${index}`);
+      if (target) {
+        observerRef.current?.observe(target);
+      }
+    });
+  }
+};
+```
+
+```js 
+const handleExpansion = () => {
+  // Set the visible item ids to all items!
+  setVisibleItemIds(() => items.map((_, index) => `${id}-item-${index}`));
+
+  // Once the user has clicked to view all items, disconnect the observer
+  observerRef.current?.disconnect();
+
+  // Update the style of the item container to overflow and wrap 
+  // this ensures that we can see all the elements
+  const itemContainer = document.getElementById(`${id}-items-container`);
+  if (itemContainer) {
+    itemContainer.style.flexWrap = "wrap";
+    itemContainer.style.overflowX = "visible";
+  }
+};
+```
+
+## Wrap up
+
+And that's it! We now have an expandable list component that leverages the power of the Intersection Observer API to elegantly handle overflow.
+
+This fairly simple component can be extended in many ways:
+* Adding unique ids to the container and each element if there are multiple lists to display on the screen
+* Adding responsiveness to accommodate changes in screen size
+
+How would you expand (no pun intended!) the component to make it more reusable?
+
+
