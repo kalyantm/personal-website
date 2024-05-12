@@ -62,7 +62,8 @@ export async function getPosts() {
       };
     })
   );
-  return posts;
+  console.log("posts", posts);
+  return posts.sort((p1, p2) => new Date(p2.date) - new Date(p1.date));
 }
 
 export async function getPost(slug: string) {

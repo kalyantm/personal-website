@@ -77,7 +77,7 @@ function App() {
         <ThemeHead ssrTheme={Boolean(data.theme)} />
         <link rel="stylesheet" href={codeTheme} />
         <script
-          crossorigin
+          crossOrigin=""
           src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"
         ></script>
       </head>
