@@ -62,7 +62,7 @@ export async function getPosts() {
       };
     })
   );
-  return posts
+  return posts;
 }
 
 export async function getPost(slug: string) {
@@ -84,6 +84,7 @@ export async function getPost(slug: string) {
   return {
     slug,
     html: html.value,
+    body,
     title: attributes.title,
     readTime: attributes.readTime,
     date: attributes.date,

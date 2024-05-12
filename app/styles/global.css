@@ -38,11 +38,11 @@ h2 {
 }
 
 pre {
-  padding: 16px;
+  /* padding: 16px; */
   margin-top: 16px;
   margin-bottom: 16px;
   background-color: var(--color-hill-stop-5);
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 code {
@@ -79,9 +79,9 @@ code {
 
 .lazyload,
 .lazyloading {
-	opacity: 0;
+  opacity: 0;
 }
 .lazyloaded {
-	opacity: 1;
-	transition: opacity 300ms;
+  opacity: 1;
+  transition: opacity 300ms;
 }

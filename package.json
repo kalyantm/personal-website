@@ -30,6 +30,8 @@
     "/public/build"
   ],
   "dependencies": {
+    "@codesandbox/sandpack-react": "^2.13.10",
+    "@codesandbox/sandpack-themes": "^2.0.21",
     "@mailchimp/mailchimp_transactional": "^1.0.47",
     "@netlify/functions": "^0.10.0",
     "@node-rs/bcrypt": "^1.6.0",
@@ -47,6 +49,7 @@
     "front-matter": "^4.0.2",
     "googleapis": "^100.0.0",
     "lazysizes": "^5.3.2",
+    "markdown-to-jsx": "^7.4.7",
     "marked": "^4.0.12",
     "react": "^17.0.2",
     "react-confetti": "^6.1.0",

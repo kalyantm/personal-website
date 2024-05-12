@@ -35,6 +35,14 @@ export const links: LinksFunction = () => {
     { rel: "stylesheet", href: tailwindStylesheetUrl },
     { rel: "stylesheet", href: cssVariablesStylesheetUrl },
     { rel: "stylesheet", href: globalStylesheetUrl },
+    {
+      rel: "stylesheet",
+      href: "https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/atom-one-dark.min.css",
+    },
+    {
+      rel: "stylesheet",
+      href: "https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/atom-one-light.min.css",
+    },
   ];
 };
 
@@ -68,6 +76,10 @@ function App() {
         <Links />
         <ThemeHead ssrTheme={Boolean(data.theme)} />
         <link rel="stylesheet" href={codeTheme} />
+        <script
+          crossorigin
+          src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"
+        ></script>
       </head>
       <body className="min-h-full">
         <Outlet />
