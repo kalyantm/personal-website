@@ -26,7 +26,6 @@ import cssVariablesStylesheetUrl from "./styles/variables.css";
 import globalStylesheetUrl from "./styles/global.css";
 import codeLightTheme from "./styles/light-theme.css";
 import codeDarkTheme from "./styles/dark-theme.css";
-import { getUser } from "./session.server";
 import { getThemeSession } from "./utils/theme.server";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -53,14 +52,12 @@ export const meta: MetaFunction = () => ({
 });
 
 type LoaderData = {
-  user: Awaited<ReturnType<typeof getUser>>;
   theme: Theme | null;
 };
 
 export const loader: LoaderFunction = async ({ request }) => {
   const themeSession = await getThemeSession(request);
   return json<LoaderData>({
-    user: await getUser(request),
     theme: themeSession.getTheme(),
   });
 };
