@@ -9,22 +9,16 @@ import Breadcrumbs from "~/components/Breadcrumbs";
 import Markdown from "markdown-to-jsx";
 import ExpandableListSandpack from "~/components/posts/ExpandableList";
 import SyntaxHighlightedCode from "~/components/posts/SyntaxHighlightedCode";
+import TableOfContents from "~/components/common/TableOfContents";
 
 export const loader: LoaderFunction = async ({ params }) => {
   invariant(params.slug, "expected params.slug");
   return json(await getPost(params.slug));
 };
 
-const getSection = (section: string) =>
-  section
-    .split(" ")
-    .map((el) => el.toLowerCase())
-    .join("-");
-
-export default function PostSlug() {
+const PostSlug = () => {
   const post = useLoaderData();
   const hash = useLocation().hash;
-  console.log("hash", hash);
   return (
     <Layout>
       <div className="my-8 px-4 md:hidden">
@@ -55,29 +49,11 @@ export default function PostSlug() {
           </Markdown>
         </article>
         {post.sections && (
-          <aside className="sticky top-32 hidden self-start md:-mr-16 md:ml-16 md:flex">
-            <div>
-              <h2 className="mb-4">Table of contents</h2>
-              <ul>
-                {post.sections.map((section: string) => (
-                  <li className="mb-4" key={section}>
-                    <a
-                      href={`#${getSection(section)}`}
-                      className={`text-left ${
-                        hash === `#${getSection(section)}`
-                          ? "text-accent"
-                          : "text-primary"
-                      }`}
-                    >
-                      {section}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </aside>
+          <TableOfContents windowHash={hash} sections={post.sections} />
         )}
       </div>
     </Layout>
   );
-}
+};
+
+export default React.memo(PostSlug);

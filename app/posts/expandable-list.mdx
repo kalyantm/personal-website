@@ -4,25 +4,17 @@ date: "1 May, 2024"
 coverImg: "expandable"
 desc: "Using the intersection observer API to build an expandable list component with React"
 featured: true
-sections:
-  [
-    "Approaching the problem",
-    "Intersection Observer API",
-    "Building the expandable list component",
-    "Wrap up",
-  ]
+sections: ["Introduction", "Building the expandable list component", "Wrap up"]
 ---
+
+## Introduction
 
 I recently came upon an interesting problem at work: we had to build a component that determines how many elements would fit in a container and hide the rest of the elements behind a `Show More` button. On clicking this button, we will show all the elements.
 For example, if the container can fit 10 elements and we had to show 12 elements, we would render the 10 elements and a `+2` button, which when clicked, would display all 12 elements (in a wrapping container)
 
-## Approaching the Problem
-
 This component can be built in different ways. One way is to use Javascript (and Math!). Once mounted, we can measure the size of the container and the size of each element and do some math to figure out how many elements would fit in the container. Then, we display the elements that fit and show a `Show More` button, where `n` is equal to the `total elements - elements fit in the container`.
 
 That would work, but there is a more elegant API that the browser provides for our problem - the intersection observer API!
-
-## Intersection Observer API
 
 The Intersection Observer API is a popular API that I've used in the past to lazily load images on slow networks (back in the day, when we did not have the luxury of just adding a `lazy` prop to `<img />`!)
 

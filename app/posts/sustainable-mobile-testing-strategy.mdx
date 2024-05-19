@@ -3,41 +3,27 @@ title: Building a sustainable mobile testing strategy
 date: "15 Jan, 2024"
 coverImg: "testing"
 desc: "How I setup a testing strategy for the proton mobile application"
-sections:
-  [
-    "Luck is in the air",
-    "Testing Stack",
-    "Write Tests. Not too many. Mostly Integration",
-    "E2E test Suite for tasks",
-    "Catching a bug!",
-    "And the rest",
-    "Conclusion",
-  ]
+sections: ["Introduction", "Testing mantra", "Catching a bug", "Conclusion"]
 ---
+
+## Introduction
 
 Every engineer I've worked with has had strong opinions about testing. And regardless of their take, there’s one recurring theme: setting up the infrastructure around these tests is hard.
 
 And why wouldn’t it be? There are dozens of frameworks to choose from. You have to define a strategy around unit, component, and integration testing. Your product manager needs to be convinced all the time and effort — with lots of flaky tests along the way — will be worth it. This is a daunting task for anyone, and it’s where our mobile app was when I came on board at Proton. Today, I’d like to walk you through how we got from nothing to a reliable end-to-end testing framework on our mobile application.
 
-<h2>LUCK IS IN THE AIR</h2>
-
 As I write this, our React Native mobile application isn’t even a year old. When I first saw the codebase, I was delighted to see that the engineers had already added test infrastructure.  There were configuration files to set up Jest, React Native Testing Library (for component tests), and even Detox for end-to-end tests. Unfortunately, no one had written any tests, though. After some initial conversations in my first few weeks, I confirmed exactly what I was thinking. We had a setup in place, but neither the time nor resources to actually write tests.
+Fortunately, as I began exploring the code we were just around the corner from a "cooldown period". After a feature development cycle, we like to pause to give our product team time to plan and our engineers time to work on their own projects. In this case, we had a three-week period where the engineers were in charge and had the liberty to work on areas of the codebase that needed improvements. And there it was, the green light that I wanted!
 
-Fortunately, as I began exploring the code we were just around the corner from a "cooldown period". After a feature development cycle, we like to pause to give our product team time to plan and our engineers time to work on their own projects. In this case, we had a three-week period where the engineers were in charge and had the liberty to work on areas of the codebase that needed improvements. And there it was, the green light that I wanted.
+## Testing mantra
 
-## TESTING STACK
-
-I didn’t mess with the testing stack or the initial setup too much -  thought it was done well. There is a large open source community around the tools we had set up like Jest, including solid documentation, well-maintained repositories, and a rich community to get support. My first task quickly turned into settling on a strategy around which tests to write first.
-
-## WRITE TESTS. NOT TOO MANY. MOSTLY INTEGRATION.
+> Write tests. Not too many. Mostly integration!
 
 This has been my favorite mantra around testing for quite some time now. It’s a mantra propagated by one of my favorite developers, Kent C Dodds. He argues that the more your tests resemble the way a user interacts with your product, the more confident you can be shipping code. If we’re writing an end-to-end test, your harness boots up the app and then literally, clicks around while making assertions - instantly testing multiple points of failure in the app or a feature as a whole.
 
-But there’s a trade-off. End-to-end tests only give you more confidence when they exactly mirror how your app behaves in production and the way a user might actually use the feature. This makes the tests expensive: they have to run in a high-fidelity production-like environment, rather than in a limited testing sandbox. And not to mention the complexity! For example,if we’re testing our mobile app, we have to boot up an iPhone or Android emulator inside the same production-like environment in our continuous integration system, load our entire application, configure mocks where needed, and then ensure each test suite runs in an isolated environment, multiplying the size of the problem.
+But there’s a trade-off. End-to-end tests only give you more confidence when they exactly mirror how your app behaves in production and the way a user might actually use the feature. This makes the tests expensive: they have to run in a high-fidelity production-like environment, rather than in a limited testing sandbox. And not to mention the complexity: For example,if we’re testing our mobile app, we have to boot up an iPhone or Android emulator inside the same production-like environment in our continuous integration system, load our entire application, configure mocks where needed, and then ensure each test suite runs in an isolated environment, multiplying the size of the problem.
 
-Is this trade-off worth it? Let's look at an example.
-
-## E2E TEST SUITE FOR TASKS
+Is this trade-off worth it? Let's look at an example:
 
 We have a tasks feature in our app that lets sales reps create tasks, edit tasks and change task status. The following example captures a test suite for tasks creation:
 
@@ -84,7 +70,7 @@ First, we have some initial code we run using the beforeEach function. We reload
   <source src="https://storage.googleapis.com/engineering-blog-assets-production/e2e-test-tasks.mp4" />
 </video>
 
-## CATCHING A BUG!
+## Catching a bug
 
 The following example illustrates where the test suite really shines:
 
@@ -118,10 +104,7 @@ Here, we were able to edit (or create) a task, assign a date in the past, and th
   <source src="https://storage.googleapis.com/engineering-blog-assets-production/e2e-test-tasks(bug).mp4" />
 </video>
 
-## AND THE REST
+## Conclusion
 
 The next step is to add these tests on our continuous integration system. Once we have a configuration in place for our emulators, we can estimate the time and resources needed to implement these tests for the other features in our application. A noteworthy feature of detox is the ability to run the application in debug mode, which paves the way for test driven development. The control of writing tests alongside active development of new features is the holy grail!
-
-## CONCLUSION
-
 Developing a testing strategy is hard. Some choices make it easier, such as our use of  static typing via Typescript. This adds a blanket of protection that  makes me comfortable putting off unit tests for now. Component level tests with the React Native testing library are definitely nice to have, but when you have a clean slate, I think end-to-end tests are the perfect place to start, despite some of the challenges. Because  the test suites interact with a feature exactly like how a real user of the app would, it naturally invites you to think about writing code for users and, not just to meet a specification sheet. And as we’ve seen here today, it doesn’t have to take moving heaven and earth to get started. Go forth and test!
