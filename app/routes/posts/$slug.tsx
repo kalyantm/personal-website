@@ -1,7 +1,7 @@
 import React from "react";
 import { useLoaderData, useLocation } from "@remix-run/react";
 import { json } from "@remix-run/node";
-import type { LoaderFunction } from "@remix-run/node";
+import type { LoaderFunction, MetaFunction } from "@remix-run/node";
 import invariant from "tiny-invariant";
 import { getPost } from "~/post";
 import Layout from "~/components/Layout";
@@ -14,6 +14,11 @@ import TableOfContents from "~/components/common/TableOfContents";
 export const loader: LoaderFunction = async ({ params }) => {
   invariant(params.slug, "expected params.slug");
   return json(await getPost(params.slug));
+};
+
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  console.log("meta data", data);
+  return { title: data.title };
 };
 
 const PostSlug = () => {

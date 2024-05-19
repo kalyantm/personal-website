@@ -1,5 +1,10 @@
 import Layout from "~/components/Layout";
 import pp from "~/assets/pp-final.png";
+import type { MetaFunction } from "@remix-run/node";
+
+export const meta: MetaFunction = () => {
+  return { title: "About me | Kalyan TM" };
+};
 
 export default function Posts() {
   return (

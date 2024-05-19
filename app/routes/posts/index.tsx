@@ -1,13 +1,17 @@
 import { useLoaderData } from "@remix-run/react";
 import { getPosts } from "~/post";
 import type { Post } from "~/post";
-import FeaturedItem from "~/components/Blog/FeaturedItem";
 import Layout from "~/components/Layout";
 import BlogItem from "~/components/Blog/Item";
 import Spacer from "~/components/Spacer";
+import type { MetaFunction } from "@remix-run/node";
 
 export const loader = async () => {
   return Promise.all(await getPosts());
+};
+
+export const meta: MetaFunction = () => {
+  return { title: "All posts" };
 };
 
 export default function Posts() {
