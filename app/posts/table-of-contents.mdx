@@ -1,0 +1,181 @@
+---
+title: Building a table of contents for your posts
+date: "1 June, 2024"
+coverImg: "toc"
+desc: "Stying a table of contents for your blog using the intersection observer API"
+featured: true
+sections:
+  [
+    "Introduction",
+    "Approaching the problem",
+    "Scrolling direction issues",
+    "Conclusion",
+  ]
+---
+
+## Introduction
+
+I recently wrote a post about building an expandable list component using the intersection observer API.
+Last month, I found another interesting use case for this API - styling a table of contents component!
+
+Imagine you are building a blog and each of your posts have a table of contents to indicate the different
+logic sections of the blog. I am using a combination of Remix and MDX to render each post and keeping track of
+the sections in the frontmatter - if these words aren't making a lot of sense to you, don't fret!
+There are tons of resources of how to setup a blog using MDX and your framework of choice (like Next.js, Remix, Gatsby, etc)
+and you can quickly get upto speed! If these terms already make sense to you, read on.
+
+I built out a very primitive component to showcase the sections of the post, and it looks like this:
+
+<img
+  src="https://thisisktm.com/posts/resources/toc/toc-1"
+  alt="Demonstration of building a V1 table of contents with little UX responsiveness"
+  class="image-gif"
+/>
+
+Notice how you can click between sections to jump to a certain section of the blog post. If you have a keen eye, you would have noticed a small UX issue:
+The active section does not update when you scroll through the article! Ideally, we want the user to be able to navigate through the article by clicking on the sections
+in the table of contents, and be able to identify which section they are currently reading with a visual cue. The former seems to work as expected, but we need to
+implement the latter - And this is where our good old friend from the past, the Intersection observer API comes in.
+
+## Approaching the problem
+
+We learned from the previous article that the Intersection observer API enables us to invoke a callback whenever an element enters or exits an intersection with another element, _or the viewport itself_.
+We are interested in the latter - we need to figure out a way to keep track of which section has entered the viewport in the article and visually update the
+active section in the table of contents. The premise seems simple, but I quickly found out it was not as straightforward as it seems!
+
+Let's start with the basics: Each header (represented by a `h2`) in the article has an `id` associated with it, which is just a camel-cased version of a header.
+(For example an `h2` header with the text "Approaching the problem" will have an associated `id`: `approaching-the-problem`)
+
+Once the component mounts, we need to keep track, observe each of these section headers and capture when they intesect with the viewport. When they do, we can
+update a state variable and apply a different visual cue to the current section in the table of contents:
+
+```js
+// We use a ref to keep track of the observer
+const observerRef = React.useRef();
+
+// We use a state variable, currentSection to keep track of the active section
+const [currentSection, setCurrentSection] = React.useState();
+
+React.useEffect(() => {
+  observerRef.current = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        setCurrentSection(entry.target.id);
+      }
+    });
+  });
+
+  sections
+    .map((section) => getSection(section))
+    .forEach((section) =>
+      observerRef.current?.observe(document.querySelector(`#${section}`))
+    );
+});
+```
+
+The `getSection` is a simple util function that converts our `h2` header to the camel-cased version:
+
+```js
+const getSection = (section) =>
+  section
+    .split(" ")
+    .map((el) => el.toLowerCase())
+    .join("-");
+```
+
+And we can use `currentSection` to highlight the current active section:
+
+```js
+{
+  /** more markup code here....*/
+}
+
+{
+  sections.map((section) => (
+    <li className="mb-4" key={section}>
+      <a
+        href={`#${getSection(section)}`}
+        className={`text-left 
+        ${hash === `${getSection(section)}` ? "text-accent" : "text-primary"}`}
+      >
+        {section}
+      </a>
+    </li>
+  ));
+}
+```
+
+This seems to work fine. When the page loads, we start off with the initial section highlighted with our accent color, while the rest are regular.
+As we scroll through the article and a new section comes into view (and thereby a new section header), the current section is updated in the intersection
+observer callback and the active section gets the accent color! You can see it in action here:
+
+<img
+  src="https://thisisktm./posts/resources/toc/toc-2"
+  alt="Demonstration of an improved table of contents where the highlighted section reflects the section being read"
+  class="image-gif"
+/>
+
+Everything seems to work as expected, right? _Right?_ Well, not particularly.
+
+## Scrolling direction issues
+
+Notice how the active section updates as expected when we are scrolling down the article, but what happens when we scroll up? Till we encounter the header
+of the previous section, we do not update the `currentSection` and hence even though you are reading the contents of the second section, the table of contents
+highlights the third section as active! (you can notice this behaviour in the video above)
+To fix this issue, we need to understand a quirk of the intersection observer API: it does not differentiate between scroll directions when computing intersections.
+This means that as long as the element intersects with your root element (or the viewport), the callback gets invoked, _regardless of whether you're scrolling up or down!_
+
+Well, this complicates things! Fortunately, the intersection observer API keeps track of a few other things for us on the `entry` object - the `boundingClientRect`
+This property captures information about the `size` and `position` relative to the viewport, and we are interested in the `y` property on this object, that tells us
+the distance from the top of the viewport. If this distance is positive, then this means that the element entered the view from the bottom edge, meaning that the user is scrolling up.
+In this case, if there are no active sections, we set the _previous section_ as the active section:
+
+```js
+React.useEffect(() => {
+  observerRef.current = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        setCurrentSection(entry.target.id);
+      } else {
+        // We check if the user is scrolling up (instead of down) and there are no intersecting elements
+        // In this case, the content that is being read is actually that of the previous section
+        // and we update the currentSection accordingly!
+        if (
+          entry.boundingClientRect.y > 0 &&
+          entries.filter((e) => e.isIntersecting).length === 0
+        ) {
+          const sectionIdx = sections.findIndex(
+            (s) => entry.target.id === getSection(s)
+          );
+
+          // We check if the sectionIdx is the first section, and in that case,
+          // just set the active section to the first section (as there will be no zeroth section!)
+          // else, set it as the previous section
+          setCurrentSection(
+            sectionIdx - 1 > 0
+              ? getSection(sections[sectionIdx - 1])
+              : getSection(sections[0])
+          );
+        }
+      }
+    });
+  });
+
+  // everything else remains the same inside the effect
+});
+```
+
+Notice how when the user switches their scroll direction, the previous section is marked as active as they scroll past the header of the current section:
+
+<img
+  src="https://thisisktm.com/posts/resources/toc/toc-3"
+  alt="Final table of contents which highlights the current section being read in both scroll directions"
+  class="image-gif"
+/>
+
+And voila! This is exactly what we needed.
+
+## Conclusion
+
+The intersection observer is a cool, versatile API - from optimizing image and content loads, to detecting intersections
+in components and viewports, it's a simple, yet powerful tool that should definitely be part of your developer toolkit!

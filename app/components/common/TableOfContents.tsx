@@ -8,18 +8,12 @@ const getSection = (section: string) =>
 
 export default function TableOfContents({
   sections,
-  windowHash,
 }: {
   sections: Array<string>;
-  windowHash: string;
 }) {
-  const [hash, setHash] = React.useState<string>(windowHash);
+  const [hash, setHash] = React.useState<string>();
   const observerRef = React.useRef<any>();
-  console.log("post section", sections);
-  console.log(
-    "getting",
-    sections.map((p) => getSection(p))
-  );
+
   React.useEffect(() => {
     observerRef.current = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {

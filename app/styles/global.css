@@ -99,3 +99,8 @@ code {
 .blog-post blockquote p {
   font-style: italic;
 }
+
+.image-gif {
+  border-radius: 4px;
+  margin: 16px 0px;
+}

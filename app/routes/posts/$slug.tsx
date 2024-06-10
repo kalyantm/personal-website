@@ -1,5 +1,5 @@
 import React from "react";
-import { useLoaderData, useLocation } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 import { json } from "@remix-run/node";
 import type { LoaderFunction, MetaFunction } from "@remix-run/node";
 import invariant from "tiny-invariant";
@@ -17,13 +17,11 @@ export const loader: LoaderFunction = async ({ params }) => {
 };
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
-  console.log("meta data", data);
   return { title: data.title };
 };
 
 const PostSlug = () => {
   const post = useLoaderData();
-  const hash = useLocation().hash;
   return (
     <Layout>
       <div className="my-8 px-4 md:hidden">
@@ -53,9 +51,7 @@ const PostSlug = () => {
             {post.body}
           </Markdown>
         </article>
-        {post.sections && (
-          <TableOfContents windowHash={hash} sections={post.sections} />
-        )}
+        {post.sections && <TableOfContents sections={post.sections} />}
       </div>
     </Layout>
   );
