@@ -3,11 +3,13 @@ import Spacer from "../Spacer";
 import helloWorld from "~/assets/hello-world.jpeg";
 import testing from "~/assets/testing.svg";
 import expandable from '~/assets/expandable.svg';
+import toc from '~/assets/table-of-contents.svg';
 
 const IMAGE_MAP = {
   helloWorld,
   testing,
-  expandable
+  expandable,
+  toc
 };
 
 interface Props {
