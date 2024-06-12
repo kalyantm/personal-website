@@ -1,6 +1,6 @@
-import toc1 from "../../../../assets/toc-1.gif";
-import toc2 from "../../../../assets/toc-2.gif";
-import toc3 from "../../../../assets/toc-3.gif";
+import toc1 from "~/assets/toc-1.gif";
+import toc2 from "~/assets/toc-2.gif";
+import toc3 from "~/assets/toc-3.gif";
 
 const TOC_GIF_MAP = {
   "toc-1": toc1,
