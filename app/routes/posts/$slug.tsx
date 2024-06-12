@@ -10,6 +10,7 @@ import Markdown from "markdown-to-jsx";
 import ExpandableListSandpack from "~/components/posts/ExpandableList";
 import SyntaxHighlightedCode from "~/components/posts/SyntaxHighlightedCode";
 import TableOfContents from "~/components/common/TableOfContents";
+import TOCGif from "~/components/posts/TableOfContents";
 
 export const loader: LoaderFunction = async ({ params }) => {
   invariant(params.slug, "expected params.slug");
@@ -44,6 +45,15 @@ const PostSlug = () => {
                 code: SyntaxHighlightedCode,
                 ExpandableListSandpack: {
                   component: () => <ExpandableListSandpack />,
+                },
+                TOC1: {
+                  component: () => <TOCGif toc="toc-1" />,
+                },
+                TOC2: {
+                  component: () => <TOCGif toc="toc-2" />,
+                },
+                TOC3: {
+                  component: () => <TOCGif toc="toc-3" />,
                 },
               },
             }}

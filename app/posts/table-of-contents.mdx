@@ -26,11 +26,7 @@ and you can quickly get up to speed! If these terms already make sense to you, r
 
 I built out a very primitive component to showcase the sections of the post, and it looks like this:
 
-<img
-  src="/posts/resources/toc/toc-1"
-  alt="Demonstration of building a V1 table of contents with little UX responsiveness"
-  class="image-gif"
-/>
+<TOC1 />
 
 Notice how you can click between sections to jump to a certain section of the blog post. If you have a keen eye, you would have noticed a small UX issue:
 The active section does not update when you scroll through the article! Ideally, we want the user to be able to navigate through the article by clicking on the sections
@@ -109,11 +105,7 @@ This seems to work fine. When the page loads, we start off with the initial sect
 As we scroll through the article and a new section comes into view (and thereby a new section header), the current section is updated in the intersection
 observer callback and the active section gets the accent color! You can see it in action here:
 
-<img
-  src="/posts/resources/toc/toc-2"
-  alt="Demonstration of an improved table of contents where the highlighted section reflects the section being read"
-  class="image-gif"
-/>
+<TOC2 />
 
 Everything seems to work as expected, right? _Right?_ Well, not particularly.
 
@@ -167,11 +159,7 @@ React.useEffect(() => {
 
 Notice how when the user switches their scroll direction, the previous section is marked as active as they scroll past the header of the current section:
 
-<img
-  src="/posts/resources/toc/toc-3"
-  alt="Final table of contents which highlights the current section being read in both scroll directions"
-  class="image-gif"
-/>
+<TOC3 />
 
 And voila! This is exactly what we needed.
 
