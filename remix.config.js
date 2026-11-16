@@ -3,7 +3,8 @@ module.exports = {
   appDirectory: "app",
   assetsDirectory: "public/build",
   publicPath: "/build/",
-  serverBuildDirectory: "api/_build",
+  // Vercel's Remix builder expects the server build at build/index.js
+  serverBuildPath: "build/index.js",
   cacheDirectory: "./node_modules/.cache/remix",
   ignoredRouteFiles: [".*", "**/*.css", "**/*.test.{js,jsx,ts,tsx}"],
   serverModuleFormat: "cjs",

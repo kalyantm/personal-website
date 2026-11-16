@@ -1,5 +1,4 @@
-import path from "path";
-import fs from "fs/promises";
+import { POST_FILES } from "./content.generated";
 import parseFrontMatter from "front-matter";
 // import invariant from "tiny-invariant";
 import { marked } from "marked";
@@ -38,15 +37,18 @@ export type PostMarkdownAttributes = {
 
 // const postsPath = path.join(__dirname, "../..", "posts");
 
+// Posts are baked into the server build by scripts/build-content.mjs (see that file for why).
+function readPost(filename: string): string {
+  const file = POST_FILES[filename];
+  if (file === undefined) throw new Error(`ENOENT: no such post: ${filename}`);
+  return file;
+}
+
 export async function getPosts() {
-  const postsPath = await fs.readdir(`${__dirname}/../../app/posts`, {
-    withFileTypes: true,
-  });
+  const postsPath = Object.keys(POST_FILES).map((name) => ({ name }));
   const posts = await Promise.all(
     postsPath.map(async (dirent) => {
-      const file = await fs.readFile(
-        path.join(`${__dirname}/../../app/posts`, dirent.name)
-      );
+      const file = readPost(dirent.name);
       const { attributes }: { attributes: any } = parseFrontMatter(
         file.toString()
       );
@@ -63,12 +65,11 @@ export async function getPosts() {
     })
   );
   console.log("posts", posts);
-  return posts.sort((p1, p2) => new Date(p2.date) - new Date(p1.date));
+  return posts.sort((p1, p2) => new Date(p2.date).getTime() - new Date(p1.date).getTime());
 }
 
 export async function getPost(slug: string) {
-  const postPath = `${__dirname}/../../app/posts/${slug}.mdx`;
-  const file = await fs.readFile(postPath, "utf8");
+  const file = readPost(`${slug}.mdx`);
   const { attributes, body }: { attributes: any; body: any } = parseFrontMatter(
     file.toString()
   );

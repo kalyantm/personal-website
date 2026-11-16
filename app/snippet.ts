@@ -1,5 +1,4 @@
-import path from "path";
-import fs from "fs/promises";
+import { SNIPPET_FILES } from "./content.generated";
 import parseFrontMatter from "front-matter";
 import invariant from "tiny-invariant";
 import { marked } from "marked";
@@ -22,8 +21,12 @@ export type SnippetMarkdownAttributes = {
   icon: string;
 };
 
-// IMP: Relative to server output, not source!
-const snippetsPath = path.join(__dirname, "..", "snippets");
+// Snippets are baked into the server build by scripts/build-content.mjs (see that file for why).
+function readSnippet(filename: string): string {
+  const file = SNIPPET_FILES[filename];
+  if (file === undefined) throw new Error(`ENOENT: no such snippet: ${filename}`);
+  return file;
+}
 
 function isValidSnippetAttributes(
   attributes: any
@@ -32,10 +35,10 @@ function isValidSnippetAttributes(
 }
 
 export async function getSnippets() {
-  const dir = await fs.readdir(snippetsPath);
+  const dir = Object.keys(SNIPPET_FILES);
   return Promise.all(
     dir.map(async (filename) => {
-      const file = await fs.readFile(path.join(snippetsPath, filename));
+      const file = readSnippet(filename);
       const { attributes } = parseFrontMatter(file.toString());
       invariant(
         isValidSnippetAttributes(attributes),
@@ -52,8 +55,8 @@ export async function getSnippets() {
 }
 
 export async function getSnippet(slug: string) {
-  const filepath = path.join(snippetsPath, slug + ".md");
-  const file = await fs.readFile(filepath);
+  const filepath = slug + ".md";
+  const file = readSnippet(filepath);
   const { attributes, body } = parseFrontMatter(file.toString());
   invariant(
     isValidSnippetAttributes(attributes),
